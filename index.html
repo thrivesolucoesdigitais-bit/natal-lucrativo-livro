@@ -1,0 +1,1244 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Natal Lucrativo no Ateliê</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+<style>
+/* Layout: um livro de uma coluna (≈760px) em papel pérola; capítulos como páginas, ferramentas como "folhas de trabalho" destacadas; faixas natalinas (verde/vermelho/dourado/branco) só nos capítulos de ímãs e calendário. */
+:root{
+  color-scheme: light;
+  /* Paleta oficial Bela Arte */
+  --ameixa:#6A415B; --perola:#FBF6F3; --malva:#D8BDD1; --dourado:#B48B55; --grafite:#302732;
+  --salvia:#AFC3B2; --pessego:#F2B8A0; --azul:#A9B8D0;
+  /* derivados */
+  --bg:#FBF6F3; --papel:#FFFDFB; --fg:#302732; --fg-soft:#5E5260; --linha:#E9DCE3;
+  --malva-claro:#F3E9EF; --dourado-texto:#86622F; --ameixa-escuro:#4E2E43;
+  /* Natal */
+  --n-verde:#1E5B3E; --n-verde-escuro:#143F2B; --n-vermelho:#A8232D; --n-dourado:#C9A24A; --n-branco:#FFFDF8;
+  --ok:#2F7A4F; --alerta:#B26A12;
+  --f-display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --f-texto:"Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-texto);font-size:17px;line-height:1.65;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--papel)}
+a{color:var(--ameixa)}
+:focus-visible{outline:3px solid var(--dourado);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;color:var(--ameixa-escuro);line-height:1.15;margin:0}
+h2{font-size:clamp(1.9rem,4.6vw,2.6rem);font-weight:600}
+h3{font-size:1.35rem;font-weight:600}
+p{margin:0}
+.eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--dourado-texto)}
+.wrap{max-width:780px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stack{display:flex;flex-direction:column;gap:1rem}
+.stack-lg{display:flex;flex-direction:column;gap:1.6rem}
+.muted{color:var(--fg-soft)}
+.small{font-size:.86rem}
+strong{font-weight:700}
+.num{font-variant-numeric:tabular-nums}
+
+/* barra superior */
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--papel) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.marca{font-family:var(--f-display);font-size:1.05rem;color:var(--ameixa);text-decoration:none;font-weight:600;white-space:nowrap}
+.marca small{font-family:var(--f-texto);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dourado-texto);margin-left:6px}
+.btn-indice{border:1px solid var(--malva);background:var(--malva-claro);color:var(--ameixa);font:700 .85rem var(--f-texto);padding:8px 14px;border-radius:999px;cursor:pointer}
+.progresso{height:3px;background:linear-gradient(90deg,var(--n-vermelho),var(--dourado));width:0;transition:width .15s}
+
+/* gaveta do índice */
+.gaveta{position:fixed;inset:0;z-index:70;display:flex;justify-content:flex-end;background:rgba(48,39,50,.35)}
+.gaveta[hidden]{display:none!important}
+.gaveta nav{background:var(--papel);width:min(380px,100%);height:100%;overflow:auto;padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 24px 20px;box-shadow:-10px 0 30px rgba(48,39,50,.15)}
+.gaveta .fechar{float:right;border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ameixa)}
+
+/* capa */
+.capa{background:radial-gradient(120% 90% at 85% 0%,#F6E3EC 0%,transparent 55%),radial-gradient(90% 70% at 0% 100%,#F7E7DA 0%,transparent 60%),var(--papel);border-bottom:1px solid var(--linha)}
+.capa .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding-block:48px 40px}
+.capa h1{font-size:clamp(2.6rem,7.4vw,4.3rem);font-weight:600;letter-spacing:-.01em}
+.capa h1 em{font-style:italic;color:var(--n-vermelho);font-weight:500}
+.capa .sub{font-size:1.12rem;color:var(--fg-soft);max-width:34ch}
+.selos{display:flex;flex-wrap:wrap;gap:8px}
+.selo{font-size:.78rem;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--malva-claro);color:var(--ameixa);border:1px solid var(--malva)}
+.selo.natal{background:#F8E9E9;color:var(--n-vermelho);border-color:#EAC3C5}
+.selo.verde{background:#E7F0EA;color:var(--n-verde);border-color:#C3D8CA}
+.capa-arte svg{width:100%;height:auto;display:block}
+.assinatura{display:flex;align-items:center;gap:12px}
+.avatar{width:52px;height:52px;border-radius:50%;flex:none;background:var(--malva-claro);border:2px solid var(--dourado);display:grid;place-items:center;font-family:var(--f-display);color:var(--ameixa);font-size:1.4rem}
+
+/* capítulos */
+.cap{padding-block:64px 24px;scroll-margin-top:64px}
+.cap + .cap{border-top:1px solid var(--linha)}
+.cap-cab{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.6rem}
+.lead{font-size:1.15rem;color:var(--fg-soft)}
+.pag{font-size:.75rem;color:var(--fg-soft);letter-spacing:.1em;text-transform:uppercase;margin-top:2rem;text-align:right}
+
+/* índice */
+.indice{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.indice a{display:grid;grid-template-columns:2.4rem 1fr auto;gap:10px;align-items:baseline;padding:12px 6px;border-bottom:1px dashed var(--linha);text-decoration:none;color:var(--fg);border-radius:8px}
+.indice a:hover{background:var(--malva-claro)}
+.indice .n{font-family:var(--f-display);color:var(--dourado-texto);font-size:1.1rem}
+.indice .t{font-weight:700}
+.indice .d{display:block;font-size:.85rem;color:var(--fg-soft);font-weight:500}
+.indice .ir{color:var(--ameixa);font-weight:800;font-size:.85rem}
+.tag-tool{font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--ameixa);color:#fff;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.tag-bonus{background:var(--n-vermelho)}
+
+/* caixas narrativas */
+.historia{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px 22px 20px;display:flex;flex-direction:column;gap:.8rem;position:relative}
+.historia .quem{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ameixa);font-size:.9rem}
+.historia .quem .avatar{width:36px;height:36px;font-size:1rem}
+.historia blockquote{margin:0;font-family:var(--f-display);font-style:italic;font-size:1.18rem;color:var(--ameixa-escuro);line-height:1.45}
+.historia .virada{border-top:1px dashed var(--malva);padding-top:.8rem}
+.historia .virada b{color:var(--ok)}
+.gatilho{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--dourado-texto);background:#F6EEE2;border:1px solid #E8D6B9;padding:3px 9px;border-radius:999px}
+.dica{background:#EEF3EF;border-left:4px solid var(--salvia);padding:14px 16px;border-radius:0 10px 10px 0}
+.alerta{background:#FBF0E6;border-left:4px solid var(--pessego);padding:14px 16px;border-radius:0 10px 10px 0}
+.modelo{background:var(--papel);border:1px dashed var(--dourado);border-radius:12px;padding:16px 18px;font-size:.98rem}
+.modelo .rot{font-weight:800;color:var(--dourado-texto);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+
+/* dados */
+.dados{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.dado{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:18px;display:flex;flex-direction:column;gap:6px}
+.dado .v{font-family:var(--f-display);font-size:2.4rem;font-weight:700;color:var(--ameixa);line-height:1}
+.dado .fonte{font-size:.74rem;color:var(--fg-soft);margin-top:auto}
+
+/* listas */
+ul.check{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+ul.check li{padding-left:28px;position:relative}
+ul.check li::before{content:"";position:absolute;left:0;top:.38em;width:16px;height:16px;border-radius:50%;background:var(--malva-claro);border:2px solid var(--ameixa)}
+ol.passos{counter-reset:p;list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.9rem}
+ol.passos>li{counter-increment:p;padding-left:46px;position:relative}
+ol.passos>li::before{content:counter(p);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--ameixa);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
+
+/* tabelas */
+.tabela-wrap{overflow-x:auto;border:1px solid var(--linha);border-radius:12px;background:var(--papel)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-texto);background:var(--malva-claro)}
+tr:last-child td{border-bottom:0}
+
+/* ferramentas */
+.ferramenta{background:var(--papel);border:2px solid var(--malva);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:1rem;box-shadow:0 10px 30px -18px rgba(106,65,91,.45)}
+.ferramenta-cab{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ferramenta-cab h3{font-size:1.3rem}
+.pill{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--ameixa);color:#fff}
+.campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.campo{display:flex;flex-direction:column;gap:4px;min-width:0}
+.campo label{font-size:.82rem;font-weight:700;color:var(--fg-soft)}
+.campo input,.campo select,.campo textarea{font:500 1rem var(--f-texto);color:var(--fg);background:#fff;border:1.5px solid var(--linha);border-radius:10px;padding:10px 12px;width:100%}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--ameixa);outline:none;box-shadow:0 0 0 3px var(--malva-claro)}
+.btn{font:800 .95rem var(--f-texto);border:0;border-radius:999px;padding:12px 20px;cursor:pointer;background:var(--ameixa);color:#fff}
+.btn:hover{background:var(--ameixa-escuro)}
+.btn.sec{background:var(--malva-claro);color:var(--ameixa);border:1px solid var(--malva)}
+.btn.natal{background:var(--n-vermelho)}
+.resultado{background:var(--malva-claro);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:.5rem}
+.linha-res{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--malva);padding-block:4px;font-variant-numeric:tabular-nums}
+.linha-res:last-child{border-bottom:0}
+.grande{font-family:var(--f-display);font-size:2.2rem;font-weight:700;color:var(--ameixa);line-height:1.1}
+.chip{display:inline-block;font-size:.78rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.chip.ok{background:#E3F1E8;color:var(--ok)}
+.chip.atencao{background:#FBEBD5;color:var(--alerta)}
+.chip.ruim{background:#F8E1E3;color:var(--n-vermelho)}
+
+/* quiz */
+.q{display:flex;flex-direction:column;gap:8px}
+.q p{font-weight:700}
+.opcoes{display:flex;flex-direction:column;gap:6px}
+.opcoes label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1.5px solid var(--linha);border-radius:10px;cursor:pointer;background:#fff;font-size:.95rem}
+.opcoes label:has(input:checked){border-color:var(--ameixa);background:var(--malva-claro)}
+.opcoes input{margin-top:5px;accent-color:var(--ameixa)}
+
+/* combinador */
+.chips-sel{display:flex;flex-wrap:wrap;gap:8px}
+.chips-sel button{font:700 .86rem var(--f-texto);padding:8px 13px;border-radius:999px;border:1.5px solid var(--malva);background:#fff;color:var(--ameixa);cursor:pointer}
+.chips-sel button[aria-pressed="true"]{background:var(--ameixa);color:#fff;border-color:var(--ameixa)}
+.ideias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ideia{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.ideia .oc{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--n-vermelho)}
+
+/* faixa natal */
+.faixa-natal{background:var(--n-verde);color:var(--n-branco);position:relative;overflow:hidden}
+.faixa-natal::before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 8% 20%,rgba(201,162,74,.35) 0 2px,transparent 3px),
+ radial-gradient(circle at 30% 80%,rgba(255,255,255,.25) 0 2px,transparent 3px),
+ radial-gradient(circle at 70% 15%,rgba(201,162,74,.35) 0 2px,transparent 3px),
+ radial-gradient(circle at 92% 60%,rgba(255,255,255,.25) 0 2px,transparent 3px);background-size:220px 160px;pointer-events:none}
+.faixa-natal .wrap{position:relative}
+.faixa-natal h2,.faixa-natal h3{color:var(--n-branco)}
+.faixa-natal .eyebrow{color:var(--n-dourado)}
+.faixa-natal .lead,.faixa-natal .muted{color:#D9E8DF}
+.faixa-natal a{color:#F3D98F}
+.faixa-natal .dica{background:rgba(255,255,255,.08);border-left-color:var(--n-dourado);color:var(--n-branco)}
+.faixa-natal .historia{background:var(--n-branco);color:var(--fg)}
+.faixa-natal .historia blockquote{color:var(--n-verde-escuro)}
+.fio-luzes{height:22px;background:radial-gradient(circle at 12px 14px,var(--n-dourado) 0 5px,transparent 6px) 0 0/48px 22px,radial-gradient(circle at 36px 14px,var(--n-vermelho) 0 5px,transparent 6px) 0 0/48px 22px;border-top:2px solid rgba(255,255,255,.25)}
+
+/* galeria */
+.galeria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.peca{background:var(--n-branco);border-radius:16px;overflow:hidden;border:0;padding:0;cursor:zoom-in;text-align:left;display:flex;flex-direction:column;font:inherit;color:var(--fg);box-shadow:0 12px 26px -16px rgba(0,0,0,.6);transition:transform .2s}
+.peca:hover{transform:translateY(-3px)}
+.peca svg,.peca img{display:block;width:100%;height:auto;aspect-ratio:320/260;object-fit:cover;background:#F6EFE6}
+.peca .leg{padding:10px 14px 14px;display:flex;flex-direction:column;gap:2px}
+.peca .leg b{font-family:var(--f-display);font-size:1.05rem;color:var(--n-verde-escuro)}
+.peca .leg span{font-size:.8rem;color:var(--fg-soft)}
+.peca .lupa{font-size:.72rem;font-weight:800;color:var(--n-vermelho);letter-spacing:.06em;text-transform:uppercase}
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(20,30,24,.82);display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox[hidden]{display:none!important}
+.lb-caixa{background:var(--n-branco);border-radius:18px;max-width:980px;width:100%;max-height:100%;overflow:auto;display:grid;grid-template-columns:1.3fr 1fr}
+.lb-img{background:#F6EFE6;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;min-height:280px}
+.lb-img svg,.lb-img img{width:100%;height:auto;transition:transform .25s;transform-origin:var(--ox,50%) var(--oy,50%);cursor:zoom-in}
+.lb-img img{max-width:440px}
+.lb-img.zoom img{transform:scale(1.5)!important}
+.lb-img.zoom svg,.lb-img.zoom img{transform:scale(2.2);cursor:zoom-out}
+.lb-txt{padding:22px;display:flex;flex-direction:column;gap:.8rem;font-size:.95rem}
+.lb-txt h3{color:var(--n-verde-escuro)}
+.lb-fechar{position:absolute;top:10px;right:10px;background:#fff;border:0;border-radius:50%;width:38px;height:38px;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.2);z-index:2}
+.lb-dica{position:absolute;bottom:10px;left:10px;font-size:.72rem;font-weight:700;background:rgba(255,255,255,.9);padding:4px 10px;border-radius:999px}
+
+/* calendário */
+.linha-tempo{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.linha-tempo li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.linha-tempo .data{font-family:var(--f-display);font-size:1.25rem;font-weight:700;color:var(--n-dourado);line-height:1.1}
+.linha-tempo .data small{display:block;font-family:var(--f-texto);font-size:.72rem;color:#CFE0D5;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
+.linha-tempo .tipo{font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px}
+.tipo.lei{background:var(--n-dourado);color:var(--n-verde-escuro)}
+.tipo.sug{background:rgba(255,255,255,.18);color:#fff}
+.tipo.lim{background:var(--n-vermelho);color:#fff}
+.tipo.bon{background:#fff;color:var(--n-vermelho)}
+
+/* ciclos */
+.ciclos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ciclo{background:var(--papel);border-radius:16px;border:1px solid var(--linha);padding:18px;display:flex;flex-direction:column;gap:.7rem}
+.ciclo h3{font-size:1.15rem}
+.ciclo .meta{font-size:.82rem;color:var(--fg-soft)}
+.tarefa{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;padding:8px;border-radius:10px;cursor:pointer}
+.tarefa:hover{background:var(--malva-claro)}
+.tarefa input{margin-top:5px;accent-color:var(--n-verde);width:18px;height:18px;flex:none}
+.tarefa:has(input:checked) span{text-decoration:line-through;color:var(--fg-soft)}
+.tarefa b{color:var(--ameixa)}
+.barra{height:10px;background:var(--linha);border-radius:999px;overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--n-verde),var(--n-dourado));width:0;transition:width .3s}
+
+/* alavancas */
+.alavanca{display:flex;flex-direction:column;gap:4px}
+.alavanca .topo-al{display:flex;justify-content:space-between;font-weight:700;font-size:.92rem}
+.alavanca input[type=range]{width:100%;accent-color:var(--ameixa)}
+
+/* bairro */
+.cards-bairro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cb{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:.45rem}
+.cb h3{font-size:1.08rem}
+.cb .meta{display:flex;gap:6px;flex-wrap:wrap}
+.cb .meta span{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--malva-claro);color:var(--ameixa)}
+.cb .meta span.g{background:#E7F0EA;color:var(--n-verde)}
+
+/* materiais */
+.materiais{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mat{display:flex;gap:12px;align-items:center;background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--fg)}
+.mat:hover{border-color:var(--ameixa)}
+.mat .ic{width:40px;height:40px;border-radius:10px;background:#FDE9E1;display:grid;place-items:center;flex:none;color:#C6452A;font-weight:800}
+.mat b{display:block;font-size:.95rem}
+.mat span{font-size:.78rem;color:var(--fg-soft)}
+.mat.destaque{border:2px solid var(--n-vermelho);background:#FFF7F4}
+
+/* final */
+.final{background:linear-gradient(160deg,var(--ameixa) 0%,var(--ameixa-escuro) 100%);color:#fff}
+.final h2{color:#fff}
+.final .lead{color:#F1E4EC}
+.final .eyebrow{color:#E9CFA0}
+.ig{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--ameixa);text-decoration:none;font-weight:800;padding:12px 22px 12px 12px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);align-self:flex-start}
+.ig .ic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#F58529,#DD2A7B 50%,#8134AF);display:grid;place-items:center}
+.palavra{font-family:var(--f-display);font-size:2rem;letter-spacing:.06em;color:#F3D98F;font-weight:700}
+.fontes{font-size:.82rem;color:var(--fg-soft)}
+.fontes li{margin-bottom:.4rem}
+.copiar{align-self:flex-start}
+.saida{white-space:pre-wrap;background:#fff;border:1.5px solid var(--linha);border-radius:12px;padding:14px 16px;font-size:.98rem;min-height:120px}
+.registro td input{width:100%;border:1px solid var(--linha);border-radius:8px;padding:6px 8px;font:inherit}
+.print-only{display:none}
+
+@media (max-width:720px){
+  .capa .wrap{grid-template-columns:1fr;padding-block:32px}
+  .capa-arte{order:-1;max-width:420px}
+  .dados,.campos,.ideias,.galeria,.ciclos,.cards-bairro,.materiais{grid-template-columns:1fr}
+  .lb-caixa{grid-template-columns:1fr}
+  .linha-tempo li{grid-template-columns:76px 1fr}
+  body{font-size:16px}
+}
+@media (max-width:480px){ .galeria{grid-template-columns:1fr} .marca small{display:none} }
+
+/* impressão */
+@page{size:A4;margin:14mm 14mm 16mm}
+@media print{
+  body{font-size:11pt;background:#fff}
+  .topo,.gaveta,.lightbox,.no-print,.btn,.copiar{display:none!important}
+  .print-only{display:block}
+  b.print-only{display:inline}
+  .cap{page-break-before:always;padding-block:0}
+  .cap .pag,.fio-luzes{display:none}
+  .capa{page-break-after:always}
+  .ferramenta,.historia,.dado,.peca,.ciclo,.cb,.modelo,.dica,.alerta,table,.linha-tempo li{break-inside:avoid}
+  .faixa-natal,.final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .capa,.peca svg,.selo,.pill,.tag-tool,.avatar,ol.passos>li::before,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{text-decoration:none}
+  .galeria{grid-template-columns:repeat(2,1fr)}
+  .linhas-preencher div{border-bottom:1px solid #999;height:26px}
+}
+</style>
+
+<!-- defs globais das ilustrações -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gSala" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B3A2E"/><stop offset="1" stop-color="#2E1E19"/></linearGradient>
+    <linearGradient id="gSalaClara" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E3D3"/><stop offset="1" stop-color="#E2C7AE"/></linearGradient>
+    <linearGradient id="gBrilho" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="gOuro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1D58B"/><stop offset=".5" stop-color="#C9A24A"/><stop offset="1" stop-color="#8E6A26"/></linearGradient>
+    <linearGradient id="gMesa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8F1E9"/><stop offset="1" stop-color="#EADBCB"/></linearGradient>
+    <linearGradient id="gVerm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C83A44"/><stop offset="1" stop-color="#8C1C25"/></linearGradient>
+    <linearGradient id="gVerde" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E7A53"/><stop offset="1" stop-color="#174A31"/></linearGradient>
+    <linearGradient id="gVidro" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient>
+    <radialGradient id="gBokeh"><stop offset="0" stop-color="#FFE7A6" stop-opacity=".9"/><stop offset="1" stop-color="#FFE7A6" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gChama"><stop offset="0" stop-color="#FFF6C8"/><stop offset=".6" stop-color="#FFC24A"/><stop offset="1" stop-color="#E26A1C" stop-opacity="0"/></radialGradient>
+    <filter id="fSombra" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#3A2418" flood-opacity=".28"/></filter>
+  </defs>
+</svg>
+
+<header class="topo no-print">
+  <div class="wrap">
+    <a class="marca" href="#inicio">Bela Arte Lucrativa <small>Natal 2026</small></a>
+    <button class="btn-indice" id="abrirIndice" type="button" aria-controls="gaveta" aria-expanded="false">☰ Índice</button>
+  </div>
+  <div class="progresso" id="progresso"></div>
+</header>
+
+<div class="gaveta" id="gaveta" hidden>
+  <nav aria-label="Índice">
+    <button class="fechar" id="fecharIndice" type="button" aria-label="Fechar índice">×</button>
+    <p class="eyebrow">Ir direto para</p>
+    <ol class="indice" id="indiceGaveta" style="margin-top:12px"></ol>
+  </nav>
+</div>
+
+<main id="inicio">
+
+<!-- CAPA -->
+<section class="capa">
+  <div class="wrap">
+    <div class="stack-lg">
+      <p class="eyebrow">Bela Arte Lucrativa · Edição Natal 2026</p>
+      <h1>Natal Lucrativo <em>no Ateliê</em></h1>
+      <p class="sub">O guia interativo para a artesã vender mais neste Natal, organizar as encomendas sem virar noites e começar 2027 com clientes que voltam.</p>
+      <div class="selos">
+        <span class="selo natal">6 ferramentas interativas</span>
+        <span class="selo verde">Plano de 2 ciclos em 7 dias</span>
+        <span class="selo">Bônus: Ano Novo</span>
+      </div>
+      <div class="assinatura">
+        <div class="avatar" aria-hidden="true">B</div>
+        <div><strong>Com a Bella</strong><br><span class="muted small">da @bela.artelucrativa</span></div>
+      </div>
+    </div>
+    <div class="capa-arte" id="capaArte" aria-hidden="true"><img src="fotos/capa.jpg" alt="" style="width:100%;border-radius:22px;display:block;box-shadow:0 18px 40px -20px rgba(106,65,91,.6)" onerror="this.remove();window.__capaSvg&&window.__capaSvg()"></div>
+  </div>
+</section>
+
+<!-- ÍNDICE -->
+<section class="cap" id="indice">
+  <div class="wrap">
+    <div class="cap-cab">
+      <p class="eyebrow">Toque no tema e vá direto para a página</p>
+      <h2>O que você vai encontrar</h2>
+    </div>
+    <ol class="indice" id="indicePrincipal"></ol>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="cap" id="carta" data-titulo="Uma carta da Bella" data-desc="Como tudo começou (e o Natal em que quase desisti)">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Abertura</p>
+      <h2>Uma carta da Bella para você</h2>
+    </div>
+    <p class="lead">Oi, eu sou a Bella. Antes de qualquer técnica, quero te contar do Natal em que quase desisti do artesanato.</p>
+    <p>Era dezembro e eu tinha a mesa da cozinha tomada por papel, cola, fita e ímã. Aceitei tudo o que apareceu: 40 lembrancinhas para a escola, 15 canecas para uma empresa, um kit para a vizinha que pediu "só um, rapidinho". Trabalhei até de madrugada na véspera. No dia 26, fui fazer as contas e descobri que tinha <strong>pagado para trabalhar</strong>. O dinheiro tinha ido embora em material, frete e desconto que eu dei sem pensar.</p>
+    <p>Naquele dia eu entendi uma coisa que mudou o meu ateliê: <strong>talento eu já tinha. Faltava método.</strong> Faltava saber o preço certo, para quem oferecer, quando parar de aceitar pedido e como fazer a vizinha da frente saber que eu existia.</p>
+    <p>Este ebook é o método que eu queria ter tido naquele Natal. Cada capítulo nasceu de um perrengue real do dia a dia de ateliê e de como ele foi resolvido. E ele é interativo: você calcula o seu preço, descobre a sua fase, gera as suas mensagens e acompanha a sua meta aqui dentro.</p>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> O combinado entre nós</div>
+      <blockquote>Você não precisa fazer tudo. Precisa fazer o próximo passo certo, todos os dias, até o dia 24.</blockquote>
+      <p class="muted small">Leia com um caderno do lado. Ou melhor: use as ferramentas daqui mesmo, que elas guardam suas respostas neste aparelho.</p>
+    </div>
+    <div class="alerta small"><strong>Combinado de honestidade:</strong> os números de pesquisa deste ebook têm fonte (está tudo no final). As simulações de preço e faturamento são exemplos para você trocar pelos seus valores. Resultado depende de aplicar, da sua região e de quanto você consegue produzir, e eu vou te mostrar como fazer essa conta com os pés no chão.</div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="cap" id="diagnostico" data-n="1" data-titulo="Diagnóstico do seu ateliê" data-desc="Quiz: descubra sua fase e por onde começar" data-tool="Quiz">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 1 · Diagnóstico</p>
+      <h2>Em que fase está o seu ateliê?</h2>
+      <p class="lead">Seis perguntas rápidas. No fim, você recebe a sua rota de leitura, porque quem ainda não vendeu nada e quem já tem fila de pedido precisam de passos diferentes.</p>
+    </div>
+    <form class="ferramenta" id="quiz">
+      <div class="ferramenta-cab"><span class="pill">Quiz</span><h3>Diagnóstico de 1 minuto</h3></div>
+      <div id="quizPerguntas" class="stack"></div>
+      <button class="btn no-print" type="submit">Ver minha fase</button>
+      <div class="resultado" id="quizResultado" hidden></div>
+    </form>
+    <div class="print-only small muted">Na versão impressa: conte quantas respostas A, B e C você marcou. Maioria A = Fase Semente · Maioria B = Fase Broto · Maioria C = Fase Florada.</div>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Fase</th><th>Como ela está</th><th>Foco deste Natal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Semente</strong></td><td>Começando, ainda sem vendas</td><td>Uma peça, uma ocasião, os primeiros 10 pedidos pagos</td></tr>
+          <tr><td><strong>Broto</strong></td><td>Já vende, mas de forma irregular</td><td>Preço certo, kits e uma agenda de divulgação constante</td></tr>
+          <tr><td><strong>Florada</strong></td><td>Ateliê rodando, quer escalar</td><td>Pedidos em quantidade, empresas, produção em lote e equipe de apoio</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE O NATAL -->
+<section class="cap" id="janela" data-n="2" data-titulo="Por que este Natal é a sua janela" data-desc="O que as pesquisas dizem sobre quem compra artesanato">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 2 · O momento</p>
+      <h2>O Natal é a maior vitrine do ano para quem faz à mão</h2>
+      <p class="lead">Não é impressão sua: os dados mostram que o fim de ano concentra a maior fatia das compras de artesanato, e que a maior motivação é presentear alguém.</p>
+    </div>
+    <div class="dados">
+      <div class="dado"><span class="v num">33%</span><p>das compras de artesanato acontecem nas festas de fim de ano (Natal e Ano Novo), a maior fatia entre todas as datas.</p><span class="fonte">Sebrae/CRAB e IEMI, 2026 · 2.400 consumidores [1]</span></div>
+      <div class="dado"><span class="v num">53%</span><p>de quem compra artesanato citou <strong>presentear alguém</strong> como motivação. É a razão número um.</p><span class="fonte">Sebrae/CRAB e IEMI, 2026 [1]</span></div>
+      <div class="dado"><span class="v num">R$ 150</span><p>é o gasto médio por compra de artesanato, com 3 peças em média. 62% gastam entre R$ 50 e R$ 200.</p><span class="fonte">Sebrae/CRAB e IEMI, 2026 [1]</span></div>
+      <div class="dado"><span class="v num">60%</span><p>descobrem artesanato pelas redes sociais. Mas 80% das compras ainda são presenciais, e as feiras locais lideram.</p><span class="fonte">Sebrae/CRAB e IEMI, 2026 [1]</span></div>
+      <div class="dado"><span class="v num">76%</span><p>dos brasileiros planejavam comprar presentes no Natal de 2025, em média 4 presentes, com gasto médio de R$ 174 por presente.</p><span class="fonte">CNDL/SPC Brasil, nov. 2025 [2]</span></div>
+      <div class="dado"><span class="v num">54%</span><p>pretendiam pagar com Pix, a forma de pagamento mais citada. Tenha sua chave Pix pronta no catálogo.</p><span class="fonte">CNDL/SPC Brasil, nov. 2025 [2]</span></div>
+    </div>
+    <div class="dica"><strong>O que isso significa na prática:</strong> a cliente descobre você no celular, mas decide comprar quando vê, toca ou recebe a peça de alguém perto dela. Por isso este ebook trabalha os dois lados: redes sociais <em>e</em> bairro.</div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>"Isso que eu faço não é coisa de Natal." Eu fazia bolsas em tela e achava que só vendia em maio, no Dia das Mães.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> parei de pensar no produto e passei a pensar na <em>ocasião</em>. A mesma bolsa virou "kit agradecimento para a professora" com um bilhete e um chocolate. Qualquer artesanato serve para qualquer ocasião. O que muda é o nome da oferta, a embalagem e o cartão.</p>
+    </div>
+
+    <div class="ferramenta" id="combinador">
+      <div class="ferramenta-cab"><span class="pill">Ferramenta</span><h3>Combinador: seu artesanato + uma ocasião de Natal</h3></div>
+      <p class="muted small">Toque no que você faz e veja ideias de oferta prontas para usar.</p>
+      <div class="chips-sel no-print" id="combChips" role="group" aria-label="Escolha seu artesanato"></div>
+      <div class="ideias" id="combIdeias"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ÍMÃS -->
+<section class="cap faixa-natal" id="imas" data-n="3" data-titulo="Ímãs com foto: o campeão do Natal" data-desc="Galeria de lembrancinhas, produção e por que eles vendem tanto">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 3 · Produto estrela</p>
+      <h2>Ímã de geladeira com foto personalizada</h2>
+      <p class="lead">Se eu tivesse que escolher um único produto para uma iniciante faturar neste Natal, seria este. E para quem já tem ateliê, ele é o adicional perfeito para qualquer kit.</p>
+    </div>
+    <div class="stack">
+      <h3>Por que ele vende tanto</h3>
+      <ul class="check" style="color:var(--n-branco)">
+        <li><strong>Emoção:</strong> a foto da família, do bebê ou do pet faz a cliente comprar com o coração. Presentear é a motivação nº 1 de quem compra artesanato.</li>
+        <li><strong>Custo baixo, valor alto:</strong> o material por unidade costuma ser pequeno perto do valor que a cliente enxerga numa peça com a foto dela. Use a calculadora do capítulo 5 para achar o seu número.</li>
+        <li><strong>Vende em quantidade:</strong> uma família compra um para cada avó, tia e madrinha. Uma empresa compra um por funcionário.</li>
+        <li><strong>É propaganda que fica:</strong> o ímã mora na geladeira o ano inteiro. Com sua @ discreta no verso ou na embalagem, quem visita aquela cozinha também conhece você.</li>
+        <li><strong>Produção rápida em lote:</strong> com uma máquina de ímã/botton, você monta uma peça em poucos minutos depois de pegar o ritmo.</li>
+      </ul>
+    </div>
+
+    <div class="stack">
+      <h3>Galeria de ideias para o Natal</h3>
+      <p class="muted">Toque em uma peça para ampliar e ver os detalhes. Dentro da imagem ampliada, toque de novo para dar zoom só na foto.</p>
+      <div class="galeria" id="galeria"></div>
+    </div>
+
+    <div class="stack">
+      <h3>Passo a passo de produção (ímã redondo com máquina)</h3>
+      <ol class="passos" style="color:var(--n-branco)">
+        <li><strong>Receba as fotos pelo WhatsApp</strong> já pedindo "foto na vertical, com boa luz e sem filtro". Peça o nome que vai no ímã e confira a grafia por escrito.</li>
+        <li><strong>Monte a arte no Canva</strong> com um molde circular no tamanho da sua máquina, deixando a margem que dobra por trás. Faça uma página A4 com várias artes para imprimir de uma vez.</li>
+        <li><strong>Imprima em papel fotográfico</strong> e deixe secar bem antes de cortar. Teste primeiro uma folha para conferir a cor.</li>
+        <li><strong>Corte com o cortador circular</strong> do mesmo tamanho da máquina. Cortar à mão atrasa e deixa a borda irregular.</li>
+        <li><strong>Prense na máquina</strong> com a capa, a arte, o filme protetor e a base imantada, na ordem do manual do seu modelo.</li>
+        <li><strong>Embale como presente:</strong> saquinho transparente, tag com o nome de quem recebe e sua etiqueta com @ e WhatsApp.</li>
+      </ol>
+      <div class="dica"><strong>Dica da Bella:</strong> escolha um tamanho e padronize. Molde, cortador e base precisam ser do mesmo tamanho da máquina. Antes de abrir encomendas, cronometre um lote de 10 peças. Esse tempo vai para a calculadora de preço e para a sua agenda.</div>
+    </div>
+
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Uma cliente mandou 12 fotos de celular, escuras e cortadas, no dia 20. Metade saiu borrada e ela reclamou.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> criei uma mensagem padrão com o "jeito certo de mandar a foto" e um prazo para envio. Foto fora do padrão eu aviso <em>antes</em> de imprimir. Ninguém mais se decepciona e eu não perco material.</p>
+    </div>
+  </div>
+  <div class="fio-luzes" aria-hidden="true"></div>
+</section>
+
+<!-- OFERTA -->
+<section class="cap" id="oferta" data-n="4" data-titulo="Monte uma oferta fácil de escolher" data-desc="Kits, ocasiões, adicionais e gatilhos que fazem a cliente decidir">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 4 · A oferta</p>
+      <h2>Monte uma oferta que a cliente escolhe em 10 segundos</h2>
+      <p class="lead">Foto bonita chama a atenção. O que faz vender é a cliente saber, de uma vez: para quem é, o que vem, quanto custa e quando chega.</p>
+    </div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Eu postava "Faço ímãs personalizados, consulte valores". Recebia "quanto é?" e, depois do preço, silêncio.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> troquei "consulte valores" por uma oferta completa com nome de ocasião, preço e prazo. As perguntas viraram pedidos, porque a cliente já chegava sabendo o que queria.</p>
+    </div>
+    <div class="stack">
+      <h3>A fórmula da oferta em 3 linhas</h3>
+      <ol class="passos">
+        <li><strong>Para quem e para qual ocasião:</strong> "Lembrança para a vovó guardar o Natal 2026".</li>
+        <li><strong>O que vem e quanto custa:</strong> "Ímã redondo com a foto da família, em saquinho com tag, por R$ [valor]".</li>
+        <li><strong>Como pedir e até quando:</strong> "Mande a palavra PRESENTE, a quantidade e a data. Encomendas personalizadas até [data-limite]".</li>
+      </ol>
+    </div>
+    <div class="stack">
+      <h3>Escada de kits: deixe a cliente escolher "o do meio"</h3>
+      <p>Quando há três opções, a do meio parece a escolha equilibrada. Isso é <strong>ancoragem</strong>: o kit maior faz o do meio parecer um ótimo negócio. Monte assim (os valores são seus, use a calculadora):</p>
+      <div class="tabela-wrap">
+        <table>
+          <thead><tr><th>Kit</th><th>O que vem</th><th>Papel na vitrine</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Lembrança</strong></td><td>1 ímã com foto em saquinho e tag</td><td>Porta de entrada, decisão rápida</td></tr>
+            <tr><td><strong>Queridinho</strong> ⭐</td><td>3 ímãs (família, avós, padrinhos) em caixinha</td><td>O que você quer que mais venda</td></tr>
+            <tr><td><strong>Família inteira</strong></td><td>6 ímãs + ímã calendário 2027 + embalagem premium</td><td>Âncora: valoriza o do meio e atrai quem quer impressionar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dica"><strong>Adicionais que aumentam o pedido sem esforço:</strong> cartão com nome (+), embalagem de presente com laço (+), ímã extra com a mesma foto (+), entrega no endereço (+). Ofereça <em>um</em> adicional por conversa, sempre com o preço já definido.</div>
+    </div>
+    <div class="stack">
+      <h3>Gatilhos mentais, usados com verdade</h3>
+      <p>Gatilho mental é só uma forma de ajudar a cliente a decidir. Funciona quando é verdade, e afasta clientes quando é truque.</p>
+      <div class="tabela-wrap">
+        <table>
+          <thead><tr><th>Gatilho</th><th>Como usar no ateliê</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Escassez real</strong></td><td>"Tenho 15 vagas para personalizados com entrega até 20/12." Atualize as vagas a cada pedido fechado.</td></tr>
+            <tr><td><strong>Urgência com data</strong></td><td>"Personalizados até 12/12. Depois, só pronta-entrega."</td></tr>
+            <tr><td><strong>Prova social</strong></td><td>Foto (autorizada) da cliente recebendo o kit, print de mensagem carinhosa, "38 famílias já garantiram o ímã delas".</td></tr>
+            <tr><td><strong>Reciprocidade</strong></td><td>Uma tag "Feliz 2027" de cortesia no pedido, ou um ímã-cartão com seu contato para a cliente dar a uma amiga.</td></tr>
+            <tr><td><strong>Compromisso</strong></td><td>A vaga só é garantida com sinal. Quem paga sinal, conclui o pedido.</td></tr>
+            <tr><td><strong>Pertencimento</strong></td><td>"Ateliê do bairro", "feito aqui pertinho", "encomendas da turma do 3º ano".</td></tr>
+            <tr><td><strong>Autoridade</strong></td><td>Mostre o processo: o corte, a prensa, o acabamento. Quem vê o cuidado entende o preço.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIFICAÇÃO -->
+<section class="cap" id="preco" data-n="5" data-titulo="Calculadora de precificação" data-desc="Descubra o preço que paga o material, o seu tempo e ainda dá lucro" data-tool="Calculadora">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 5 · Preço</p>
+      <h2>O preço que paga o seu tempo e ainda dá lucro</h2>
+      <p class="lead">O erro mais caro do Natal é vender muito com o preço errado. Quanto mais você vende, mais prejuízo acumula.</p>
+    </div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Copiei o preço de uma moça do Instagram. Vendi 30 ímãs e, quando somei papel, base, embalagem, taxa da maquininha e as fotos que estraguei, não sobrou nada pelo meu tempo.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> passei a calcular cada peça com cinco coisas: material, embalagem, meu tempo, perdas e custos fixos. Só depois coloco a taxa e o lucro. É exatamente o que a calculadora abaixo faz.</p>
+    </div>
+    <form class="ferramenta" id="calc" autocomplete="off">
+      <div class="ferramenta-cab"><span class="pill">Calculadora</span><h3>Precificação de uma peça</h3></div>
+      <p class="muted small">Já vem preenchida com um <strong>exemplo ilustrativo</strong> de ímã redondo. Troque pelos seus valores.</p>
+      <div class="campos">
+        <div class="campo"><label for="c_mat">Material da peça (R$)</label><input id="c_mat" type="number" step="0.01" min="0" value="1.80"></div>
+        <div class="campo"><label for="c_emb">Embalagem, tag e etiqueta (R$)</label><input id="c_emb" type="number" step="0.01" min="0" value="0.60"></div>
+        <div class="campo"><label for="c_min">Minutos para fazer 1 peça</label><input id="c_min" type="number" step="1" min="0" value="6"></div>
+        <div class="campo"><label for="c_hora">Quanto vale sua hora (R$)</label><input id="c_hora" type="number" step="0.5" min="0" value="25"></div>
+        <div class="campo"><label for="c_perda">Perdas previstas (% do material)</label><input id="c_perda" type="number" step="1" min="0" value="5"></div>
+        <div class="campo"><label for="c_fixo">Custos fixos do mês (R$)</label><input id="c_fixo" type="number" step="1" min="0" value="120"></div>
+        <div class="campo"><label for="c_prod">Peças que você faz no mês</label><input id="c_prod" type="number" step="1" min="1" value="200"></div>
+        <div class="campo"><label for="c_taxa">Taxas da venda (% maquininha, app)</label><input id="c_taxa" type="number" step="0.5" min="0" value="4"></div>
+        <div class="campo"><label for="c_lucro">Lucro desejado (% do preço)</label><input id="c_lucro" type="number" step="1" min="0" value="30"></div>
+        <div class="campo"><label for="c_qtd">Peças no kit (para calcular o kit)</label><input id="c_qtd" type="number" step="1" min="1" value="3"></div>
+      </div>
+      <div class="resultado" id="calcRes" aria-live="polite"></div>
+      <p class="small muted">Custos fixos são luz, internet, desgaste da máquina, MEI, embalagens de envio e o que você paga todo mês mesmo sem vender. A fórmula usada: preço = custo total ÷ (1 − taxa − lucro). Assim o lucro e a taxa saem do preço final, e não do seu bolso.</p>
+    </form>
+    <div class="dica"><strong>Arredonde para cima, nunca para baixo.</strong> Se a conta deu R$ 8,52, anuncie R$ 8,90. E desconfie de qualquer preço abaixo do custo total: isso não é promoção, é você pagando para a cliente levar.</div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<section class="cap" id="clientes" data-n="6" data-titulo="Reative clientes e peça indicações" data-desc="Quem já conhece você compra mais rápido">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 6 · Clientes que voltam</p>
+      <h2>Comece por quem já confia em você</h2>
+      <p class="lead">Cliente antiga não precisa ser convencida do seu acabamento. É o pedido mais rápido que existe, e quase ninguém aproveita.</p>
+    </div>
+    <ol class="passos">
+      <li><strong>Faça a lista de 20 nomes:</strong> clientes antigas, amigas que elogiaram suas peças, mães da escola, colegas de trabalho, a turma da igreja. Só quem já te passou o contato e aceita receber suas novidades.</li>
+      <li><strong>Escolha a ocasião de cada uma:</strong> a mãe de bebê recebe a ideia do "1º Natal", a professora recebe a do kit de agradecimento, a gerente recebe a de kit para equipe.</li>
+      <li><strong>Mande uma mensagem pessoal</strong>, não uma lista de transmissão genérica. Use o gerador do capítulo 9.</li>
+      <li><strong>Depois da entrega, peça indicação</strong> com uma foto que ela mesma possa encaminhar.</li>
+    </ol>
+    <div class="modelo"><span class="rot">Mensagem pronta · Reativação</span>"Oi, [nome]! Lembrei de você porque estou fazendo ímãs com a foto da família para o Natal, e a sua é linda. Tenho poucas vagas para entrega até [data]. Quer que eu te mande as opções e os valores?"</div>
+    <div class="alerta small"><strong>Respeito e regras do WhatsApp:</strong> envie ofertas só para quem forneceu o contato e aceitou receber. Se a pessoa pedir para parar, pare. Além de ser o certo, evita denúncias e bloqueio do seu número [3].</div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Eu tinha vergonha de "incomodar" quem já tinha comprado. Enquanto isso, essas mesmas clientes compravam presente de outra pessoa.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> entendi que avisar uma cliente que gostou do meu trabalho é um favor, não um incômodo. Uma mensagem pessoal com uma ideia certa para ela virou o meu canal de venda mais rápido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BAIRRO -->
+<section class="cap" id="bairro" data-n="7" data-titulo="Divulgação criativa no bairro" data-desc="12 ideias para a vizinhança descobrir o seu ateliê">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 7 · Seu bairro</p>
+      <h2>Faça o bairro inteiro saber que existe um ateliê ali</h2>
+      <p class="lead">80% das compras de artesanato ainda são presenciais [1]. A cliente mais fácil mora a poucos minutos de você e talvez nem saiba que você faz isso.</p>
+    </div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>A vizinha da frente apareceu toda feliz mostrando o ímã de família que comprou… de uma artesã de outra cidade, pela internet.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> percebi que a minha rua não sabia que eu existia. Coloquei uma vitrine no portão, deixei amostras na padaria e no salão e distribuí ímãs-cartão. Em dezembro, metade dos meus pedidos foi de gente que mora a menos de 10 minutos.</p>
+    </div>
+    <div class="cards-bairro" id="cardsBairro"></div>
+    <div class="dica"><strong>Combine tudo por escrito com o comércio parceiro:</strong> preço final, quem recebe os pedidos, prazo, comissão (se houver) e onde a cliente retira. Comece com um lote pequeno para testar.</div>
+    <div class="modelo"><span class="rot">Mensagem pronta · Comércio parceiro</span>"Oi, sou a [seu nome], do ateliê [nome], aqui do [bairro]. Faço ímãs com foto personalizada e pensei numa ideia para as suas clientes no Natal: um expositor com amostras no balcão e um QR code para encomendar. Posso passar aí com a amostra e te mostrar a proposta?"</div>
+  </div>
+</section>
+
+<!-- REDES -->
+<section class="cap" id="redes" data-n="8" data-titulo="Redes sociais que abrem conversas" data-desc="O vídeo de 3 cenas e a palavra PRESENTE">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 8 · Instagram e WhatsApp</p>
+      <h2>Poste para abrir conversas, não para ganhar curtidas</h2>
+      <p class="lead">60% das pessoas descobrem artesanato pelas redes [1]. O objetivo de cada post é um só: a cliente te mandar mensagem.</p>
+    </div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Eu passava uma hora arrumando a foto perfeita. Vinham 40 curtidas, nenhuma mensagem e nenhum pedido.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> troquei a foto perfeita por um vídeo curto de 3 cenas mostrando minhas mãos, e terminei com um pedido claro: "mande PRESENTE". As mensagens começaram no mesmo dia.</p>
+    </div>
+    <h3>O vídeo de 3 cenas (grave com o celular)</h3>
+    <ol class="passos">
+      <li><strong>A ocasião:</strong> a peça pronta e para quem ela é. "Para a vovó que guarda tudo na geladeira."</li>
+      <li><strong>O acabamento:</strong> abra a embalagem, aproxime a câmera, mostre a prensa funcionando. Ver o processo dá confiança.</li>
+      <li><strong>Como pedir:</strong> preço na tela, bairro de retirada e "Mande PRESENTE + quantidade + data".</li>
+    </ol>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Onde</th><th>O que postar nesta temporada</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Reels</strong></td><td>O vídeo de 3 cenas · "Antes e depois" da foto virando ímã · Bastidores de um lote de 30 peças</td></tr>
+          <tr><td><strong>Stories</strong></td><td>Contador de vagas · Caixinha "qual kit você daria?" · Entrega do dia (com autorização)</td></tr>
+          <tr><td><strong>Status do WhatsApp</strong></td><td>Opções prontas, preço e próxima data de entrega. É onde estão as vizinhas e as mães da escola.</td></tr>
+          <tr><td><strong>Grupos do bairro</strong></td><td>Só onde a divulgação é permitida, uma vez por semana, com foto, preço e prazo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- GERADOR -->
+<section class="cap" id="mensagens" data-n="9" data-titulo="Gerador de mensagens" data-desc="Textos prontos para WhatsApp e Instagram com seus dados" data-tool="Gerador">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 9 · Ferramenta</p>
+      <h2>Gerador de mensagens para WhatsApp e Instagram</h2>
+      <p class="lead">Preencha uma vez com os seus dados. Escolha a situação e copie a mensagem pronta, já com o gatilho certo para cada momento.</p>
+    </div>
+    <form class="ferramenta" id="gerador" autocomplete="off">
+      <div class="ferramenta-cab"><span class="pill">Gerador</span><h3>Sua mensagem em 10 segundos</h3></div>
+      <div class="campos">
+        <div class="campo" style="grid-column:1/-1"><label for="g_tipo">Situação</label><select id="g_tipo"></select></div>
+        <div class="campo"><label for="g_atelie">Nome do seu ateliê</label><input id="g_atelie" value="Ateliê Bella"></div>
+        <div class="campo"><label for="g_cliente">Nome da cliente ou do comércio</label><input id="g_cliente" value="Carla"></div>
+        <div class="campo"><label for="g_produto">Produto ou kit</label><input id="g_produto" value="ímã com a foto da família"></div>
+        <div class="campo"><label for="g_ocasiao">Ocasião</label><input id="g_ocasiao" value="o Natal da vovó"></div>
+        <div class="campo"><label for="g_preco">Preço (R$)</label><input id="g_preco" value="29,90"></div>
+        <div class="campo"><label for="g_bairro">Seu bairro</label><input id="g_bairro" value="Jardim das Flores"></div>
+        <div class="campo"><label for="g_data">Data-limite</label><input id="g_data" value="12/12"></div>
+        <div class="campo"><label for="g_vagas">Vagas disponíveis</label><input id="g_vagas" value="15"></div>
+      </div>
+      <p class="gatilho" id="g_gatilho"></p>
+      <div class="saida" id="g_saida" aria-live="polite"></div>
+      <button class="btn copiar" type="button" id="g_copiar">Copiar mensagem</button>
+    </form>
+    <div class="print-only small">Na versão impressa, todas as mensagens estão no anexo "Mensagens prontas", no final.</div>
+  </div>
+</section>
+
+<!-- FECHAR -->
+<section class="cap" id="fechar" data-n="10" data-titulo="Transforme conversas em pedidos" data-desc="Orçamento, sinal e o funil simples do ateliê">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 10 · Fechamento</p>
+      <h2>Do "quanto é?" ao pedido pago</h2>
+      <p class="lead">Conversa boa é conversa curta: a cliente sabe o que responder e você confirma tudo de uma vez.</p>
+    </div>
+    <div class="historia">
+      <div class="quem"><div class="avatar" aria-hidden="true">B</div> Perrengue da Bella</div>
+      <blockquote>Comprei material para 50 lembrancinhas de uma cliente que disse "pode fazer". Ela desistiu no dia 18 e eu fiquei com tudo parado.</blockquote>
+      <p class="virada"><b>Como resolvi:</b> hoje a vaga na fila de produção só existe depois do sinal pago e da arte aprovada. Eu digo isso com carinho e firmeza no orçamento, e nunca mais tive material encalhado.</p>
+    </div>
+    <ol class="passos">
+      <li><strong>Descubra o pedido:</strong> "Qual modelo você gostou, quantas unidades e para que dia? Prefere retirar no [bairro] ou entrega?"</li>
+      <li><strong>Envie o orçamento completo:</strong> modelo, quantidade, valor total, adicionais, data de entrega e validade do orçamento.</li>
+      <li><strong>Confirme com sinal:</strong> "A vaga fica garantida com o sinal de 50% pelo Pix e a aprovação da arte."</li>
+      <li><strong>Registre:</strong> anote o pedido na planilha do capítulo 12, com data e status.</li>
+    </ol>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Orçamento enviado</th><th>Aguardando sinal</th><th>Em produção</th><th>Pronto</th><th>Entregue</th></tr></thead>
+        <tbody><tr><td class="muted small">Retome em 24h</td><td class="muted small">Vaga não garantida</td><td class="muted small">Arte aprovada</td><td class="muted small">Avise a cliente</td><td class="muted small">Peça indicação</td></tr></tbody>
+      </table>
+    </div>
+    <h3>Quando o prazo apertar</h3>
+    <p>Perto do dia 24, a data pesa mais do que a personalização. Separe sua vitrine em duas: <strong>personalizados</strong> (com data-limite clara) e <strong>pronta-entrega</strong> (peças neutras com tag de Natal, prontas para retirar). Assim, quem chegou tarde ainda compra de você.</p>
+    <div class="modelo"><span class="rot">Mensagem pronta · Pronta-entrega</span>"Personalizados encerrados! Mas ainda tenho [quantidade] kits prontos de [produto] por R$ [valor], para retirar no [bairro] até o dia 23. Me chame para garantir o seu."</div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="cap faixa-natal" id="cronograma" data-n="11" data-titulo="Cronograma de novembro e dezembro" data-desc="2 ciclos em 7 dias + calendário com datas-limite" data-tool="Cronograma">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 11 · Plano de ação</p>
+      <h2>Em 7 dias, você completa 2 ciclos de venda</h2>
+      <p class="lead">Em vez de um plano lento de uma semana, você roda um ciclo curto de 3 dias para testar e um de 4 dias para ampliar o que funcionou. Ao fim de 7 dias você já sabe o que vende, onde vende e por quanto.</p>
+    </div>
+    <div class="ciclos" id="ciclos"></div>
+    <div class="stack" style="background:rgba(255,255,255,.06);border-radius:14px;padding:14px 16px">
+      <div style="display:flex;justify-content:space-between;font-weight:700"><span>Seu progresso</span><span id="cicloPct" class="num">0%</span></div>
+      <div class="barra"><i id="cicloBarra"></i></div>
+      <p class="small muted">Suas marcações ficam salvas neste aparelho. Terminou os dois ciclos? Repita a partir do Dia 1 com a oferta que mais vendeu.</p>
+    </div>
+    <h3>Calendário de novembro e dezembro de 2026</h3>
+    <p class="muted small"><span class="tipo lei">Lei</span> data definida em lei · <span class="tipo lim">Limite</span> data-limite sugerida para você · <span class="tipo sug">Ação</span> ação recomendada · <span class="tipo bon">Bônus</span> extensão de Ano Novo</p>
+    <ol class="linha-tempo" id="linhaTempo"></ol>
+    <div class="dica"><strong>Ajuste as datas à sua realidade:</strong> se você envia pelos Correios ou transportadora, confirme o prazo de entrega para dezembro antes de divulgar a sua data-limite. As datas sugeridas aqui são para retirada e entrega local.</div>
+  </div>
+  <div class="fio-luzes" aria-hidden="true"></div>
+</section>
+
+<!-- METAS -->
+<section class="cap" id="metas" data-n="12" data-titulo="Planilha de metas e vendas" data-desc="Como dobrar o faturamento com 3 alavancas + registro de pedidos" data-tool="Planilha">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Capítulo 12 · Metas</p>
+      <h2>Dobrar o faturamento é conta, não sorte</h2>
+      <p class="lead">Faturamento é a multiplicação de três números: <strong>clientes × valor médio do pedido × pedidos por cliente</strong>. Melhore cada um deles cerca de 26% e o resultado dobra. Com cerca de 44% em cada um, ele triplica.</p>
+    </div>
+    <div class="ferramenta" id="alavancas">
+      <div class="ferramenta-cab"><span class="pill">Simulador</span><h3>As 3 alavancas do seu faturamento</h3></div>
+      <div class="campos">
+        <div class="campo"><label for="a_cli">Clientes no período (hoje)</label><input id="a_cli" type="number" min="0" value="20"></div>
+        <div class="campo"><label for="a_tic">Valor médio do pedido (R$)</label><input id="a_tic" type="number" min="0" step="0.5" value="45"></div>
+        <div class="campo"><label for="a_freq">Pedidos por cliente</label><input id="a_freq" type="number" min="0" step="0.1" value="1"></div>
+      </div>
+      <div class="alavanca"><div class="topo-al"><span>+ Clientes (bairro, redes, parcerias)</span><span id="v_cli" class="num">26%</span></div><input type="range" id="r_cli" min="0" max="100" value="26" aria-label="Aumento de clientes"></div>
+      <div class="alavanca"><div class="topo-al"><span>+ Valor do pedido (kits e adicionais)</span><span id="v_tic" class="num">26%</span></div><input type="range" id="r_tic" min="0" max="100" value="26" aria-label="Aumento do valor do pedido"></div>
+      <div class="alavanca"><div class="topo-al"><span>+ Recompra (reativação, Ano Novo)</span><span id="v_freq" class="num">26%</span></div><input type="range" id="r_freq" min="0" max="100" value="26" aria-label="Aumento de recompra"></div>
+      <div class="resultado" id="alavRes" aria-live="polite"></div>
+      <p class="small muted">Simulação ilustrativa. Antes de mirar alto, confira se a sua produção semanal dá conta (calculadora abaixo).</p>
+    </div>
+
+    <div class="ferramenta" id="meta">
+      <div class="ferramenta-cab"><span class="pill">Meta</span><h3>Quanto produzir por semana até o dia 24</h3></div>
+      <div class="campos">
+        <div class="campo"><label for="m_meta">Quanto quero lucrar até 24/12 (R$)</label><input id="m_meta" type="number" min="0" value="1500"></div>
+        <div class="campo"><label for="m_lucro">Lucro por peça (R$) · vem da calculadora</label><input id="m_lucro" type="number" min="0" step="0.01" value="2.56"></div>
+        <div class="campo"><label for="m_cap">Peças que consigo fazer por semana</label><input id="m_cap" type="number" min="0" value="150"></div>
+        <div class="campo"><label for="m_hoje">Data de hoje</label><input id="m_hoje" type="date"></div>
+      </div>
+      <div class="resultado" id="metaRes" aria-live="polite"></div>
+    </div>
+
+    <div class="ferramenta">
+      <div class="ferramenta-cab"><span class="pill">Planilha</span><h3>Registro de pedidos</h3></div>
+      <p class="small muted">Anote cada pedido. Os dados ficam salvos só neste aparelho.</p>
+      <form class="campos no-print" id="regForm" autocomplete="off">
+        <div class="campo"><label for="r_cliente">Cliente</label><input id="r_cliente" required></div>
+        <div class="campo"><label for="r_prod">Produto/kit</label><input id="r_prod" required></div>
+        <div class="campo"><label for="r_valor">Valor (R$)</label><input id="r_valor" type="number" min="0" step="0.01" required></div>
+        <div class="campo"><label for="r_canal">Veio de onde?</label><select id="r_canal"><option>Cliente antiga</option><option>Indicação</option><option>Instagram</option><option>WhatsApp/Status</option><option>Bairro/vitrine</option><option>Comércio parceiro</option><option>Feira</option></select></div>
+        <div class="campo"><label for="r_status">Status</label><select id="r_status"><option>Orçamento enviado</option><option>Aguardando sinal</option><option>Em produção</option><option>Pronto</option><option>Entregue</option></select></div>
+        <div class="campo" style="justify-content:flex-end"><button class="btn" type="submit">Adicionar pedido</button></div>
+      </form>
+      <div class="tabela-wrap"><table class="registro"><thead><tr><th>Cliente</th><th>Produto</th><th>Valor</th><th>Canal</th><th>Status</th><th class="no-print"></th></tr></thead><tbody id="regBody"></tbody></table></div>
+      <div class="resultado" id="regRes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANO NOVO -->
+<section class="cap" id="anonovo" data-titulo="Bônus: estenda as vendas até o Ano Novo" data-desc="Kits neutros, ímã calendário 2027 e a primeira venda de janeiro" data-bonus="1">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Bônus · 26 a 31 de dezembro</p>
+      <h2>O Natal acabou. As vendas, não.</h2>
+      <p class="lead">Lembra que 33% das compras de artesanato acontecem no Natal <em>e</em> no Ano Novo [1]? A semana entre as festas é quando quase todo mundo para, e você pode continuar vendendo com pouca concorrência.</p>
+    </div>
+    <ul class="check">
+      <li><strong>Troque a tag, não o produto:</strong> o que sobrou de pronta-entrega ganha tag "Feliz 2027" e vira presente para a ceia de Réveillon e para a anfitriã.</li>
+      <li><strong>Ímã calendário 2027:</strong> a foto preferida da família com o calendário do ano. Ofereça primeiro para quem comprou no Natal: já conhece seu acabamento.</li>
+      <li><strong>Kit "metas do ano":</strong> para quem faz papelaria, um planner ou bloco com capa personalizada e um ímã com uma palavra para o ano.</li>
+      <li><strong>Pós-venda que vira recompra:</strong> mande uma mensagem perguntando se a peça agradou e ofereça o ímã calendário com uma condição para quem já é cliente.</li>
+      <li><strong>Prepare janeiro:</strong> volta às aulas pede etiquetas, chaveiros com nome, capas de caderno e ímãs de rotina. Avise suas clientes antes da concorrência.</li>
+    </ul>
+    <div class="modelo"><span class="rot">Mensagem pronta · Ano Novo</span>"Oi, [nome]! A vovó gostou do ímã? 🥰 Fiz uma versão com o calendário de 2027 e a foto preferida da família, para ela olhar o ano inteiro. Para quem já é cliente, separei [condição] até 31/12. Quer ver como fica com a sua foto?"</div>
+  </div>
+</section>
+
+<!-- MATERIAIS -->
+<section class="cap" id="materiais" data-titulo="Materiais indicados" data-desc="Lista de compras do ateliê, com a máquina de ímã">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Lista de compras</p>
+      <h2>Materiais que eu uso e indico</h2>
+      <p class="lead">Tudo o que aparece neste ebook, num lugar só. Antes de comprar, confira se máquina, cortador e bases são do <strong>mesmo tamanho</strong>.</p>
+    </div>
+    <div class="materiais" id="listaMateriais"></div>
+    <p class="small muted">Os links desta lista são de afiliado da Shopee: se você comprar por eles, a Bela Arte Lucrativa recebe uma pequena comissão, sem nenhum custo extra para você. Obrigada pelo apoio! 💕</p>
+  </div>
+</section>
+
+<!-- CONCLUSÃO -->
+<section class="cap final" id="final" data-titulo="Você não está sozinha" data-desc="Conclusão, comunidade e o seu presente">
+  <div class="wrap stack-lg">
+    <div class="cap-cab">
+      <p class="eyebrow">Conclusão</p>
+      <h2>Você não está sozinha nessa mesa de cozinha</h2>
+    </div>
+    <p class="lead">Se você chegou até aqui, já está à frente da Bella daquele Natal em que quase desisti. Agora você tem o preço certo, a oferta clara, as mensagens prontas, o plano de 2 ciclos e o calendário até o dia 24.</p>
+    <p style="color:#F1E4EC">Sei como é fazer artesanato no intervalo da rotina: entre a louça, o trabalho, os filhos e o cansaço. Por isso não comece por tudo. Comece pelo Dia 1 do ciclo. Uma peça, uma ocasião, cinco mensagens. Um pedido pago, bem combinado e entregue com carinho já te ensina o que repetir.</p>
+    <p style="color:#F1E4EC">Milhares de mulheres estão na mesma luta silenciosa, achando que o problema é falta de talento. Não é. Talento você já provou que tem. Daqui para frente é método, constância e companhia, e companhia a gente tem de sobra.</p>
+    <div class="stack" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:20px">
+      <p class="eyebrow" style="color:#F3D98F">Seu presente está esperando</p>
+      <p style="color:#fff">Siga a <strong>@bela.artelucrativa</strong> no Instagram e mande no direct a palavra:</p>
+      <p class="palavra">COMUNIDADE</p>
+      <p style="color:#F1E4EC">Você vai receber um presente meu e entrar para a comunidade de artesãs que estão aplicando este método neste Natal: trocando ideias, dividindo perrengues e comemorando cada pedido juntas.</p>
+      <a class="ig" href="https://www.instagram.com/bela.artelucrativa/" target="_blank" rel="noopener">
+        <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#fff" stroke="none"/></svg></span>
+        Seguir @bela.artelucrativa
+      </a>
+    </div>
+    <p style="font-family:var(--f-display);font-style:italic;font-size:1.3rem;color:#fff">Com carinho e muita cola quente,<br>Bella 💗</p>
+  </div>
+</section>
+
+<!-- FONTES -->
+<section class="cap" id="fontes" data-titulo="Fontes e anexo" data-desc="Pesquisas citadas e mensagens prontas para imprimir">
+  <div class="wrap stack-lg">
+    <div class="cap-cab"><p class="eyebrow">Referências</p><h2>Fontes das pesquisas</h2></div>
+    <ol class="fontes">
+      <li>Sebrae / CRAB (Centro Sebrae de Referência do Artesanato Brasileiro) e IEMI. <em>Consumidores de Artesanatos</em>, 2026. Amostra de 2.400 consumidores. <a href="https://sites.rj.sebrae.com.br/arquivos/crab/Consumidores_de_artesanatos.pdf" target="_blank" rel="noopener">Consultar o estudo</a>.</li>
+      <li>CNDL e SPC Brasil. Pesquisa de Intenção de Compras para o Natal 2025, divulgada em 27/11/2025. <a href="https://www.dgabc.com.br/Noticia/4271718/vendas-no-natal-devem-movimentar-rs-85-bi-na-economia-brasileira-mostra-pesquisa" target="_blank" rel="noopener">Ver reportagem</a>.</li>
+      <li>WhatsApp Business. Política Comercial: envie mensagens apenas a quem forneceu o número e autorizou o contato. <a href="https://business.whatsapp.com/policy" target="_blank" rel="noopener">Consultar a política</a>.</li>
+      <li>Lei nº 4.749/1965: 1ª parcela do 13º salário até 30 de novembro e 2ª parcela até 20 de dezembro.</li>
+      <li>Sebrae. <em>Guia prático de precificação para os pequenos negócios</em> (método do markup divisor, base da calculadora). <a href="https://bibliotecas.sebrae.com.br/chronus/ARQUIVOS_CHRONUS/bds/bds.nsf/45ee582085782cbc0f452cce55d360d4/$File/19655.pdf" target="_blank" rel="noopener">Consultar o guia</a>.</li>
+    </ol>
+    <div class="print-only stack" id="anexoMensagens"></div>
+    <p class="small muted">Natal Lucrativo no Ateliê · Bela Arte Lucrativa · Edição 2026. Material de uso individual da compradora. Os resultados dependem da aplicação, do mercado local e da capacidade de produção de cada ateliê; simulações são ilustrativas.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="lbTitulo">
+  <div class="lb-caixa">
+    <div class="lb-img" id="lbImg"><button class="lb-fechar" id="lbFechar" type="button" aria-label="Fechar">×</button><span class="lb-dica">Toque na imagem para dar zoom</span></div>
+    <div class="lb-txt" id="lbTxt"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem("natalLucrativo:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("natalLucrativo:"+k,JSON.stringify(v))}catch(e){}}};
+const brl=v=>(isFinite(v)?v:0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- ÍNDICE ---------- */
+const caps=[...document.querySelectorAll("section.cap[data-titulo]")];
+function montaIndice(el){
+  el.innerHTML=caps.map((s,i)=>{
+    const tool=s.dataset.tool?`<span class="tag-tool">${s.dataset.tool}</span>`:"";
+    const bonus=s.dataset.bonus?`<span class="tag-tool tag-bonus">Bônus</span>`:"";
+    return `<li><a href="#${s.id}"><span class="n">${s.dataset.n?String(s.dataset.n).padStart(2,"0"):"✦"}</span><span><span class="t">${s.dataset.titulo}</span>${tool}${bonus}<span class="d">${s.dataset.desc||""}</span></span><span class="ir no-print">ir →</span></a></li>`}).join("");
+}
+montaIndice($("#indicePrincipal")); montaIndice($("#indiceGaveta"));
+const gav=$("#gaveta"),btnI=$("#abrirIndice");
+btnI.addEventListener("click",()=>{gav.hidden=false;btnI.setAttribute("aria-expanded","true");$("#fecharIndice").focus()});
+const fechaG=()=>{gav.hidden=true;btnI.setAttribute("aria-expanded","false")};
+$("#fecharIndice").addEventListener("click",fechaG);
+gav.addEventListener("click",e=>{if(e.target===gav||e.target.closest("a"))fechaG()});
+const prog=$("#progresso");
+addEventListener("scroll",()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%"},{passive:true});
+
+/* ---------- ILUSTRAÇÕES ---------- */
+let uid=0;
+const pele=["#F2C9A5","#D9A07A","#A86B47","#7A4A2E"];
+function gorro(x,y,s){return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-16 0 Q0 -30 22 -22 Q10 -12 14 0 Z" fill="url(#gVerm)"/><rect x="-18" y="-4" width="36" height="8" rx="4" fill="#fff"/><circle cx="23" cy="-22" r="5" fill="#fff"/></g>`}
+function pessoa(x,y,s,roupa,tom,cabelo,hat){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+  <path d="M-26 70 Q-26 30 0 28 Q26 30 26 70 Z" fill="${roupa}"/>
+  <path d="M-8 30 L0 40 L8 30" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
+  <circle cx="0" cy="8" r="17" fill="${tom}"/>
+  <path d="M-17 6 Q-16 -14 0 -12 Q16 -14 17 6 Q12 -4 0 -3 Q-12 -4 -17 6Z" fill="${cabelo}"/>
+  <circle cx="-6" cy="9" r="1.6" fill="#3a2a22"/><circle cx="6" cy="9" r="1.6" fill="#3a2a22"/>
+  <path d="M-5 15 Q0 19 5 15" stroke="#7a3b2e" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <circle cx="-10" cy="14" r="3" fill="#E98C86" opacity=".45"/><circle cx="10" cy="14" r="3" fill="#E98C86" opacity=".45"/>
+  ${hat?gorro(0,-8,0.75):""}</g>`}
+function fundoFoto(w,h,claro){
+  let b=`<rect width="${w}" height="${h}" fill="url(#${claro?"gSalaClara":"gSala"})"/>`;
+  const pts=[[.12,.18,14],[.3,.1,9],[.82,.14,12],[.9,.36,8],[.62,.08,7],[.2,.42,8]];
+  pts.forEach(p=>b+=`<circle cx="${p[0]*w}" cy="${p[1]*h}" r="${p[2]*w/120}" fill="url(#gBokeh)"/>`);
+  b+=`<g transform="translate(${w*.84} ${h*.25})"><path d="M0 0 L-22 40 L-10 40 L-28 72 L28 72 L10 40 L22 40 Z" fill="url(#gVerde)" opacity="${claro?.9:.75}"/><circle cx="-8" cy="36" r="3" fill="#C9A24A"/><circle cx="10" cy="56" r="3" fill="#C83A44"/><circle cx="-14" cy="62" r="3" fill="#F1D58B"/><path d="M0 -8 l2.5 6 6 .5 -4.6 4 1.5 6 -5.4 -3.3 -5.4 3.3 1.5 -6 -4.6 -4 6 -.5z" fill="#F1D58B"/></g>`;
+  return b;
+}
+function cena(tipo,w,h){
+  const cx=w/2;
+  if(tipo==="familia") return fundoFoto(w,h)+pessoa(cx-38,h*.42,1.05,"#A8232D",pele[0],"#5A3825",false)+pessoa(cx+36,h*.40,1.1,"#1E5B3E",pele[1],"#2B1B14",false)+pessoa(cx,h*.6,.75,"#C9A24A",pele[0],"#8A5A2B",true);
+  if(tipo==="bebe") return fundoFoto(w,h,true)+`<ellipse cx="${cx}" cy="${h*.9}" rx="${w*.42}" ry="${h*.16}" fill="#fff" opacity=".7"/>`+pessoa(cx,h*.45,1.25,"#FFFDF8",pele[0],"#C08A55",true);
+  if(tipo==="casal") return fundoFoto(w,h)+pessoa(cx-26,h*.44,1.05,"#6A415B",pele[2],"#1E120E",true)+pessoa(cx+28,h*.42,1.1,"#A8232D",pele[1],"#3A2418",false);
+  if(tipo==="avos") return fundoFoto(w,h,true)+pessoa(cx-28,h*.44,1,"#1E5B3E",pele[0],"#D9D4CF",false)+pessoa(cx+28,h*.44,1,"#A8232D",pele[0],"#BDB6AE",false);
+  if(tipo==="neto") return fundoFoto(w,h)+pessoa(cx,h*.5,1.05,"#1E5B3E",pele[3],"#1E120E",true);
+  if(tipo==="neta") return fundoFoto(w,h,true)+pessoa(cx,h*.5,1.05,"#A8232D",pele[1],"#6B3A1E",true);
+  if(tipo==="pet") return fundoFoto(w,h,true)+`<g transform="translate(${cx} ${h*.56})">
+     <ellipse cx="0" cy="40" rx="40" ry="26" fill="#C98A4B"/>
+     <ellipse cx="-30" cy="-6" rx="13" ry="24" fill="#8E5A2C" transform="rotate(18 -30 -6)"/>
+     <ellipse cx="30" cy="-6" rx="13" ry="24" fill="#8E5A2C" transform="rotate(-18 30 -6)"/>
+     <circle cx="0" cy="0" r="30" fill="#D9A066"/>
+     <ellipse cx="0" cy="13" rx="15" ry="11" fill="#F3D9B8"/>
+     <ellipse cx="0" cy="7" rx="6" ry="4.5" fill="#2B1B14"/>
+     <circle cx="-11" cy="-5" r="3.4" fill="#2B1B14"/><circle cx="11" cy="-5" r="3.4" fill="#2B1B14"/>
+     <path d="M-4 18 Q0 22 4 18" stroke="#2B1B14" stroke-width="1.6" fill="none"/>
+     <path d="M-26 32 Q0 44 26 32" stroke="#A8232D" stroke-width="7" fill="none" stroke-linecap="round"/>
+     <circle cx="0" cy="40" r="4.5" fill="url(#gOuro)"/>${gorro(4,-26,1)}</g>`;
+  if(tipo==="logo") return `<rect width="${w}" height="${h}" fill="url(#gVerde)"/><circle cx="${cx}" cy="${h*.42}" r="${w*.2}" fill="#FFFDF8"/><path transform="translate(${cx} ${h*.42}) scale(${w/110})" d="M0 -12 l3.6 8 8.7 .8 -6.6 5.8 2 8.6 -7.7 -4.6 -7.7 4.6 2 -8.6 -6.6 -5.8 8.7 -.8z" fill="url(#gOuro)"/><text x="${cx}" y="${h*.76}" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="${w*.075}" fill="#FFFDF8" letter-spacing="2">SUA EMPRESA</text><text x="${cx}" y="${h*.88}" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="${w*.075}" fill="#F1D58B">Boas Festas 2026</text>`;
+  if(tipo==="calendario"){
+    let g=fundoFoto(w,h*.55)+pessoa(cx-22,h*.27,.7,"#A8232D",pele[0],"#5A3825",false)+pessoa(cx+22,h*.26,.72,"#1E5B3E",pele[2],"#1E120E",true);
+    g+=`<rect y="${h*.55}" width="${w}" height="${h*.45}" fill="#FFFDF8"/><text x="${cx}" y="${h*.66}" text-anchor="middle" font-family="Playfair Display,serif" font-weight="700" font-size="${w*.09}" fill="#A8232D">2027</text>`;
+    for(let i=0;i<12;i++){const c=i%4,r=Math.floor(i/4),x=w*.08+c*w*.215,y=h*.7+r*h*.095;g+=`<rect x="${x}" y="${y}" width="${w*.19}" height="${h*.075}" rx="2" fill="${i%2?"#F3E9EF":"#EEF3EF"}"/><g fill="#6A415B" opacity=".6">${[0,1,2,3,4].map(k=>`<rect x="${x+3+k*w*.034}" y="${y+h*.03}" width="${w*.022}" height="${h*.01}"/><rect x="${x+3+k*w*.034}" y="${y+h*.05}" width="${w*.022}" height="${h*.01}"/>`).join("")}</g>`}
+    return g;
+  }
+  return fundoFoto(w,h);
+}
+function imaRedondo(cx,cy,r,tipo,aro){
+  const id="c"+(++uid);
+  return `<g filter="url(#fSombra)"><circle cx="${cx}" cy="${cy}" r="${r+4}" fill="${aro||"#E9E2DA"}"/><clipPath id="${id}"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath><g clip-path="url(#${id})"><g transform="translate(${cx-r} ${cy-r})">${cena(tipo,r*2,r*2)}</g></g><ellipse cx="${cx-r*.3}" cy="${cy-r*.45}" rx="${r*.6}" ry="${r*.32}" fill="url(#gBrilho)" transform="rotate(-25 ${cx} ${cy})"/></g>`;
+}
+function polaroid(x,y,w,tipo,leg,rot){
+  const id="c"+(++uid),fh=w*1.18,ph=w*.86,pw=w*.86,m=w*.07;
+  return `<g transform="rotate(${rot||0} ${x+w/2} ${y+fh/2})" filter="url(#fSombra)"><rect x="${x}" y="${y}" width="${w}" height="${fh}" rx="3" fill="#FFFDF8"/><clipPath id="${id}"><rect x="${x+m}" y="${y+m}" width="${pw}" height="${ph}"/></clipPath><g clip-path="url(#${id})"><g transform="translate(${x+m} ${y+m})">${cena(tipo,pw,ph)}</g></g><text x="${x+w/2}" y="${y+fh-w*.08}" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="${w*.1}" fill="#6A415B">${leg}</text></g>`;
+}
+function acrilico(x,y,w,h,tipo){
+  const id="c"+(++uid);
+  return `<g filter="url(#fSombra)"><rect x="${x-6}" y="${y-6}" width="${w+12}" height="${h+12}" rx="14" fill="#fff" fill-opacity=".55" stroke="#fff" stroke-width="2"/><clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/></clipPath><g clip-path="url(#${id})"><g transform="translate(${x} ${y})">${cena(tipo,w,h)}</g></g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" fill="url(#gVidro)"/></g>`;
+}
+function mesa(){return `<rect width="320" height="260" fill="url(#gMesa)"/><g opacity=".5"><path d="M0 214 Q80 200 160 214 T320 214" stroke="#E2CDB8" fill="none"/></g>`}
+function galho(x,y,s,r){return `<g transform="translate(${x} ${y}) rotate(${r||0}) scale(${s||1})"><path d="M0 0 L70 0" stroke="#5A3A22" stroke-width="2"/>${[8,18,28,38,48,58].map(i=>`<path d="M${i} 0 l-6 -9 M${i} 0 l-6 9 M${i+4} 0 l-5 -8 M${i+4} 0 l-5 8" stroke="#1E5B3E" stroke-width="2.4" stroke-linecap="round"/>`).join("")}<circle cx="64" cy="4" r="5" fill="url(#gVerm)"/><circle cx="56" cy="-5" r="4" fill="url(#gOuro)"/></g>`}
+function tag(x,y,txt,r){return `<g transform="translate(${x} ${y}) rotate(${r||0})"><path d="M0 0 L46 0 L56 12 L46 24 L0 24 Z" fill="#D9B98C"/><circle cx="48" cy="12" r="2.5" fill="#F6EFE6"/><text x="22" y="16" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="9.5" fill="#5A3A22">${txt}</text></g>`}
+function fita(x,y,s){return `<g transform="translate(${x} ${y}) scale(${s||1})"><path d="M0 0 C-22 -18 -30 4 -4 4 Z" fill="url(#gVerm)"/><path d="M0 0 C22 -18 30 4 4 4 Z" fill="url(#gVerm)"/><path d="M-2 2 L-12 26 L-4 22 Z M2 2 L12 26 L4 22 Z" fill="#8C1C25"/><circle cx="0" cy="1" r="4" fill="#C83A44"/></g>`}
+function caixa(x,y,w,h,cor){return `<g filter="url(#fSombra)"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${cor}"/><rect x="${x-4}" y="${y-10}" width="${w+8}" height="14" rx="3" fill="${cor}" style="filter:brightness(.92)"/><rect x="${x+w/2-5}" y="${y-10}" width="10" height="${h+10}" fill="url(#gOuro)"/></g>`}
+
+const pecas=[
+ {t:"Ímã \"Nosso Natal 2026\"",s:"Redondo · foto da família",f:"ima-familia",svg:()=>mesa()+galho(20,40,1,-10)+imaRedondo(160,120,74,"familia","#C9A24A")+tag(214,190,"Nosso Natal",-8)+fita(250,52,.9),
+  d:{tam:"Redondo, no tamanho da sua máquina",kit:"Saquinho transparente, tag kraft com o nome da família, etiqueta com sua @",quem:"Famílias, avós, padrinhos, amigo secreto",bella:"Ofereça o 2º e o 3º ímã com a mesma foto por um valor menor. Quase toda família leva para mais de uma casa."}},
+ {t:"\"Meu 1º Natal\"",s:"Polaroid · bebê",f:"ima-bebe",svg:()=>mesa()+galho(210,30,.9,15)+polaroid(96,30,128,"bebe","Meu 1º Natal",-4)+fita(98,40,.7),
+  d:{tam:"Ímã estilo polaroid, impresso e plastificado ou em acrílico",kit:"Envelope kraft com cartão \"para guardar para sempre\"",quem:"Mães de bebê, avós de primeira viagem, chá de bebê de dezembro",bella:"Grupos de mães e pediatras do bairro são ótimos lugares para mostrar esta peça."}},
+ {t:"Kit Vovó: 4 ímãs",s:"Cartela com netos e família",f:"kit-vovo",svg:()=>mesa()+`<rect x="40" y="36" width="240" height="180" rx="10" fill="#FFFDF8" filter="url(#fSombra)"/><text x="160" y="64" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="17" fill="#A8232D">Para a melhor vó do mundo</text>`+imaRedondo(100,112,32,"neto")+imaRedondo(220,112,32,"neta")+imaRedondo(100,180,32,"avos")+imaRedondo(220,180,32,"familia")+fita(160,212,.8),
+  d:{tam:"4 ímãs redondos montados em cartela de papel 300 g",kit:"Cartela + saco celofane + laço vermelho",quem:"Netos, filhas e noras que querem um presente emocionante para a avó",bella:"Este é o kit \"Queridinho\" perfeito: valor de pedido maior com o mesmo processo de produção."}},
+ {t:"Ímã do pet com gorro",s:"Acrílico · pet da família",f:"ima-pet",svg:()=>mesa()+galho(230,200,.8,-20)+acrilico(95,40,130,150,"pet")+tag(40,200,"Toby",-6),
+  d:{tam:"Retangular em acrílico com manta magnética",kit:"Caixinha com petisco ou laço, tag com o nome do pet",quem:"Tutores de pet, pet shops e clínicas veterinárias do bairro",bella:"Proponha uma parceria com o pet shop: amostra no balcão e QR code para encomendar."}},
+ {t:"Ímã calendário 2027",s:"Bônus de Ano Novo",f:"ima-calendario",svg:()=>mesa()+galho(10,210,.9,-15)+polaroid(100,24,124,"calendario","Feliz 2027",3),
+  d:{tam:"Retangular, com foto e calendário do ano",kit:"Envelope com tag \"Um ano inteiro de nós\"",quem:"Quem já comprou no Natal, presentes de Réveillon, empresas",bella:"É a sua ponte entre o Natal e janeiro: ofereça primeiro para as clientes que já compraram."}},
+ {t:"Ímã corporativo",s:"Kit para equipes e clientes",f:"ima-corporativo",svg:()=>mesa()+caixa(180,120,110,80,"#FFFDF8")+imaRedondo(110,110,62,"logo","#C9A24A")+tag(30,190,"Equipe 2026",-4),
+  d:{tam:"Redondo com logo e mensagem de fim de ano",kit:"Caixa kraft com cartão assinado pela empresa, podendo incluir caneca ou chocolate",quem:"Clínicas, escritórios, salões, imobiliárias e lojas do bairro",bella:"Feche até o início de dezembro: empresas aprovam orçamento com antecedência e pedem em quantidade."}},
+ {t:"Amigurumi Noel",s:"Crochê · amigo secreto",f:"amigurumi-noel",svg:()=>mesa()+galho(220,40,.9,20)+`<g transform="translate(150 70)" filter="url(#fSombra)"><ellipse cx="10" cy="120" rx="46" ry="52" fill="url(#gVerm)"/><path d="M-36 120 q46 14 92 0" stroke="#fff" stroke-width="8" fill="none"/><rect x="2" y="100" width="16" height="44" fill="#fff" opacity=".9"/><circle cx="10" cy="50" r="36" fill="#F2C9A5"/><path d="M-26 56 q36 60 72 0 q-8 30 -36 34 q-28 -4 -36 -34z" fill="#fff"/><circle cx="-2" cy="44" r="3.5" fill="#2B1B14"/><circle cx="22" cy="44" r="3.5" fill="#2B1B14"/><circle cx="10" cy="54" r="5" fill="#E98C86"/><path d="M-28 30 Q10 -40 52 6 Q30 0 40 28 Z" fill="url(#gVerm)"/><rect x="-30" y="22" width="80" height="12" rx="6" fill="#fff"/><circle cx="54" cy="6" r="8" fill="#fff"/><g stroke="#8C1C25" stroke-width="1" opacity=".45">${Array.from({length:10},(_,i)=>`<path d="M${-28+i*8} 90 l4 6"/>`).join("")}</g></g>`+tag(40,196,"Amigo secreto",-6),
+  d:{tam:"Cerca de um palmo de altura (ajuste ao seu molde)",kit:"Saquinho de organza com tag de Natal",quem:"Amigo secreto, decoração de mesa, crianças",bella:"Crochê e amigurumi pedem mais horas: coloque o seu tempo real na calculadora antes de anunciar."}},
+ {t:"Sousplat natalino",s:"Crochê · mesa da ceia",f:"sousplat",svg:()=>mesa()+`<g filter="url(#fSombra)"><circle cx="160" cy="130" r="96" fill="#A8232D"/>${[88,78,68].map((r,i)=>`<circle cx="160" cy="130" r="${r}" fill="none" stroke="${["#FFFDF8","#C9A24A","#FFFDF8"][i]}" stroke-width="3" stroke-dasharray="4 5"/>`).join("")}<circle cx="160" cy="130" r="60" fill="#FFFDF8"/><circle cx="160" cy="130" r="46" fill="none" stroke="#EADBCB" stroke-width="2"/></g><path d="M250 40 l40 0 -6 60 -28 0z" fill="url(#gVerde)" opacity=".9"/>`+galho(20,220,.8,-10),
+  d:{tam:"Em torno de 35 a 40 cm de diâmetro (padrão de sousplat)",kit:"Jogo com 4 ou 6 unidades, amarrado com fita e tag",quem:"Anfitriãs da ceia, presentes para sogras e mães, decoração de mesa",bella:"Venda o jogo completo, não a unidade. A cliente monta a mesa inteira e você aumenta o pedido."}},
+ {t:"Vela aromática em pote",s:"Velas · presente da anfitriã",f:"vela",svg:()=>mesa()+galho(20,60,.9,-8)+`<g filter="url(#fSombra)"><rect x="110" y="80" width="100" height="130" rx="12" fill="#F6EFE6" stroke="#E2D5C6" stroke-width="3"/><rect x="114" y="110" width="92" height="96" rx="9" fill="#F3E3C8"/><rect x="110" y="80" width="100" height="130" rx="12" fill="url(#gVidro)"/><rect x="122" y="140" width="76" height="40" rx="4" fill="#D9B98C"/><text x="160" y="164" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="13" fill="#5A3A22">Noite Feliz</text><path d="M160 110 l0 -14" stroke="#3a2a22" stroke-width="2"/><ellipse cx="160" cy="86" rx="9" ry="16" fill="url(#gChama)"/></g>`+fita(160,214,.8)+tag(220,190,"Feliz Natal",-8),
+  d:{tam:"Pote de vidro com tampa, fragrância de Natal",kit:"Tag com nome da fragrância e cartão de cuidados",quem:"Convidadas da ceia, professoras, presentes corporativos",bella:"Monte a versão pronta-entrega: na última semana, é ela que salva quem esqueceu do presente."}},
+ {t:"Caixa MDF \"Boas Festas\"",s:"Cartonagem/MDF · kit corporativo",f:"caixa-mdf",svg:()=>mesa()+galho(230,30,.9,25)+caixa(70,100,180,110,"#1E5B3E")+`<text x="160" y="166" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-size="20" fill="#F1D58B">Boas Festas</text>`+fita(160,90,1.1)+tag(30,200,"Para você",-6),
+  d:{tam:"Caixa com tampa, personalizada com nome ou logo",kit:"Pode levar chocolate, vela, ímã ou caneca dentro",quem:"Empresas, escolas, clínicas e confeitarias parceiras",bella:"A caixa transforma qualquer produto seu em kit. É o caminho mais rápido para aumentar o valor do pedido."}}
+];
+const gal=$("#galeria");
+const midia=p=>`<img src="fotos/${p.f}.jpg" alt="${esc(p.t)}" data-svg="1"><svg viewBox="0 0 320 260" role="img" aria-label="${esc(p.t)}" hidden>${p.svg()}</svg>`;
+gal.innerHTML=pecas.map((p,i)=>`<button class="peca" type="button" data-i="${i}" aria-label="Ampliar ${esc(p.t)}">${midia(p)}<span class="leg"><b>${p.t}</b><span>${p.s}</span><span class="lupa no-print">🔍 Toque para ampliar</span></span></button>`).join("");
+function fallback(root){root.querySelectorAll("img[data-svg]").forEach(im=>{const s=im.nextElementSibling;const troca=()=>{im.remove();if(s)s.removeAttribute("hidden")};if(im.complete&&im.naturalWidth===0)troca();else im.addEventListener("error",troca,{once:true})})}
+fallback(gal);
+const lb=$("#lightbox"),lbImg=$("#lbImg"),lbTxt=$("#lbTxt");
+let ultimoFoco=null;
+gal.addEventListener("click",e=>{
+  const b=e.target.closest(".peca");if(!b)return;const p=pecas[+b.dataset.i];ultimoFoco=b;
+  lbImg.classList.remove("zoom");
+  lbImg.querySelectorAll("svg,img").forEach(s=>s.remove());
+  lbImg.insertAdjacentHTML("afterbegin",midia(p));fallback(lbImg);
+  lbTxt.innerHTML=`<p class="eyebrow" style="color:var(--n-vermelho)">${p.s}</p><h3 id="lbTitulo">${p.t}</h3><p><strong>Formato:</strong> ${p.d.tam}</p><p><strong>Como embalar:</strong> ${p.d.kit}</p><p><strong>Para quem vender:</strong> ${p.d.quem}</p><div class="dica"><strong>Dica da Bella:</strong> ${p.d.bella}</div>`;
+  lb.hidden=false;$("#lbFechar").focus();
+});
+lbImg.addEventListener("click",e=>{
+  const s=e.target.closest("svg,img");if(!s)return;
+  const r=s.getBoundingClientRect();
+  lbImg.style.setProperty("--ox",((e.clientX-r.left)/r.width*100)+"%");
+  lbImg.style.setProperty("--oy",((e.clientY-r.top)/r.height*100)+"%");
+  lbImg.classList.toggle("zoom");
+});
+const fechaLb=()=>{lb.hidden=true;if(ultimoFoco)ultimoFoco.focus()};
+$("#lbFechar").addEventListener("click",fechaLb);
+lb.addEventListener("click",e=>{if(e.target===lb)fechaLb()});
+addEventListener("keydown",e=>{if(e.key==="Escape"){if(!lb.hidden)fechaLb();if(!gav.hidden)fechaG()}});
+
+/* capa */
+window.__capaSvg=()=>{$("#capaArte").innerHTML=`<svg viewBox="0 0 320 300">${`<rect width="320" height="300" rx="22" fill="#F6E9EE"/>`}${galho(10,40,1.1,-12)}${galho(220,270,1,-160)}${caixa(150,170,130,90,"#E9C9D6")}${fita(215,160,1.2)}${polaroid(30,70,118,"familia","Natal 2026",-6)}${imaRedondo(232,92,46,"pet","#C9A24A")}${tag(40,240,"Feito à mão",-6)}</svg>`};{const ci=$("#capaArte img");if(!ci||(ci.complete&&ci.naturalWidth===0))window.__capaSvg()}
+
+/* ---------- QUIZ ---------- */
+const perguntas=[
+ ["Quantas vendas você fez nos últimos 3 meses?",["Nenhuma ou só para família","Algumas, sem regularidade","Vendo toda semana"]],
+ ["Como você define o preço das peças?",["Ainda não sei cobrar","Olho o preço de outras artesãs","Tenho uma conta com custos e lucro"]],
+ ["Onde suas clientes encontram você?",["Ainda em lugar nenhum","No meu Instagram e WhatsApp, quando posto","Redes, indicações e pontos parceiros"]],
+ ["Você já tem uma peça que sabe repetir com bom acabamento?",["Ainda estou aprendendo","Tenho uma ou duas","Tenho uma linha de produtos"]],
+ ["Como você organiza as encomendas?",["Ainda não tenho encomendas","Na memória e nas conversas do WhatsApp","Em planilha, caderno ou aplicativo"]],
+ ["O que mais te trava hoje?",["Insegurança para começar","Falta de constância nas vendas","Falta de tempo para dar conta dos pedidos"]]
+];
+$("#quizPerguntas").innerHTML=perguntas.map((q,i)=>`<fieldset class="q" style="border:0;padding:0;margin:0"><legend style="padding:0"><p>${i+1}. ${q[0]}</p></legend><div class="opcoes">${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}" ${j===0&&i<0?"checked":""}> <span><b class="print-only" style="display:inline">${"ABC"[j]}) </b>${o}</span></label>`).join("")}</div></fieldset>`).join("");
+document.querySelectorAll("#quizPerguntas .print-only").forEach(e=>e.style.display="");
+const fases=[
+ {n:"Fase Semente 🌱",d:"Você está começando, e isso é ótimo: começar no Natal é começar na maior vitrine do ano. Seu foco é uma peça só, uma ocasião e os primeiros 10 pedidos pagos.",r:[["imas","Ímãs com foto"],["preco","Calculadora de preço"],["clientes","Primeiras clientes"],["cronograma","Ciclo 1 do plano"]],m:"Meta sugerida: 10 pedidos pagos até 24/12."},
+ {n:"Fase Broto 🌿",d:"Você já provou que vende. O que falta é previsibilidade: preço que dá lucro, kits que aumentam o pedido e divulgação toda semana, não só quando sobra tempo.",r:[["preco","Calculadora de preço"],["oferta","Escada de kits"],["bairro","Divulgação no bairro"],["mensagens","Gerador de mensagens"]],m:"Meta sugerida: aumentar o valor médio do pedido com o kit Queridinho."},
+ {n:"Fase Florada 🌸",d:"Seu ateliê já roda. Agora o jogo é volume com organização: empresas, pedidos em quantidade, produção em lote e datas-limite firmes para não virar noites.",r:[["imas","Ímã corporativo"],["cronograma","Calendário com datas-limite"],["metas","Planilha de metas"],["anonovo","Extensão de Ano Novo"]],m:"Meta sugerida: 2 parcerias com empresas ou comércios até 05/12."}
+];
+$("#quiz").addEventListener("submit",e=>{
+  e.preventDefault();const cont=[0,0,0];let resp=0;
+  perguntas.forEach((_,i)=>{const r=document.querySelector(`input[name=q${i}]:checked`);if(r){cont[+r.value]++;resp++}});
+  const out=$("#quizResultado");out.hidden=false;
+  if(resp<perguntas.length){out.innerHTML=`<p><strong>Faltam ${perguntas.length-resp} resposta(s).</strong> Responda todas para ver a sua fase.</p>`;return}
+  const f=fases[cont.indexOf(Math.max(...cont))];
+  out.innerHTML=`<p class="eyebrow">Seu resultado</p><p class="grande" style="font-size:1.8rem">${f.n}</p><p>${f.d}</p><p><strong>${f.m}</strong></p><p class="small"><strong>Sua rota de leitura:</strong> ${f.r.map(x=>`<a href="#${x[0]}">${x[1]}</a>`).join(" → ")}</p>`;
+  store.set("fase",f.n);
+});
+
+/* ---------- COMBINADOR ---------- */
+const comb={
+ "Ímãs com foto":[["Família","Ímã da família para cada avó e madrinha"],["Empresas","Ímã com logo para a equipe"],["Professoras","Ímã com foto da turma"],["Ano Novo","Ímã calendário 2027"]],
+ "Papelaria":[["Professoras","Cartão + marcador de página com nome"],["Amigo secreto","Mini caderno personalizado"],["Empresas","Kit tag + cartão com logo"],["Ano Novo","Planner 2027 com capa personalizada"]],
+ "Velas":[["Ceia","Vela aromática para a anfitriã"],["Professoras","Mini vela com tag de agradecimento"],["Empresas","Vela com rótulo da empresa"],["Ano Novo","Vela 'intenções para 2027'"]],
+ "Canecas e cerâmica":[["Família","Caneca 'Natal da família 2026'"],["Empresas","Caneca com logo e cartão"],["Ceia","Xícara com pires para a sogra"],["Amigo secreto","Caneca com frase divertida"]],
+ "Cartonagem e MDF":[["Empresas","Caixa 'Boas Festas' com logo"],["Confeitarias","Caixa para doces da parceira"],["Família","Caixa de memórias do ano"],["Ceia","Bandeja/porta-guardanapo natalino"]],
+ "Resina":[["Amigo secreto","Chaveiro com inicial e flor seca"],["Família","Porta-retrato com nomes"],["Empresas","Chaveiro com logo"],["Ano Novo","Marcador de taça para o Réveillon"]],
+ "Crochê e amigurumi":[["Amigo secreto","Amigurumi Noel ou rena"],["Ceia","Sousplat e porta-copos natalinos"],["Crianças","Boneco do personagem favorito"],["Ano Novo","Enfeite de mesa em branco e dourado"]],
+ "Macramê":[["Ceia","Guirlanda de porta em macramê"],["Família","Porta-vaso com plantinha"],["Professoras","Chaveiro de macramê com tag"],["Ano Novo","Painel 'Gratidão 2026'"]],
+ "Costura e roupas":[["Família","Pijamas de Natal combinando"],["Ceia","Avental natalino com nome"],["Crianças","Vestido ou camisa de Natal"],["Empresas","Ecobag com logo"]],
+ "Bonecas de pano":[["Crianças","Boneca com o nome bordado"],["Família","Boneca 'mini você' da neta para a avó"],["Ceia","Bonecos de enfeite de árvore"],["Amigo secreto","Boneca-chaveiro"]],
+ "Bolsas em tela":[["Professoras","Bolsinha com bilhete e chocolate"],["Família","Necessaire da mãe e da filha"],["Empresas","Bolsa para kit de boas-vindas"],["Ano Novo","Bolsa de praia para as férias"]],
+ "Sousplat":[["Ceia","Jogo de 6 sousplats natalinos"],["Família","Presente para a sogra anfitriã"],["Empresas","Kit mesa posta para clientes"],["Ano Novo","Jogo branco e dourado do Réveillon"]],
+ "E.V.A. e lembrancinhas":[["Professoras","Lembrancinha de fim de ano letivo"],["Crianças","Enfeite de árvore com foto"],["Empresas","Lembrança para clientes da loja"],["Ano Novo","Topper e tags para a ceia"]],
+ "Bordado e quadros":[["Família","Bastidor com nomes da família"],["Bebês","Quadro 'Meu 1º Natal'"],["Ceia","Guardanapos bordados"],["Empresas","Quadro com frase da empresa"]]
+};
+const cc=$("#combChips"),ci=$("#combIdeias");
+const chaves=Object.keys(comb);
+cc.innerHTML=chaves.map((k,i)=>`<button type="button" aria-pressed="${i===0}" data-k="${esc(k)}">${k}</button>`).join("");
+function mostraComb(k){ci.innerHTML=comb[k].map(x=>`<div class="ideia"><span class="oc">${x[0]}</span><span>${x[1]}</span></div>`).join("")}
+cc.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cc.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));mostraComb(b.dataset.k)});
+mostraComb(chaves[0]);
+
+/* ---------- PRECIFICAÇÃO ---------- */
+const n=id=>parseFloat(String($(id).value).replace(",","."))||0;
+let lucroPeca=0;
+function calcula(){
+  const mat=n("#c_mat"),emb=n("#c_emb"),min=n("#c_min"),hora=n("#c_hora"),perda=n("#c_perda")/100,fixo=n("#c_fixo"),prod=Math.max(1,n("#c_prod")),taxa=n("#c_taxa")/100,luc=n("#c_lucro")/100,qtd=Math.max(1,n("#c_qtd"));
+  const mo=min/60*hora,perdas=(mat+emb)*perda,rateio=fixo/prod,custo=mat+emb+mo+perdas+rateio;
+  const div=1-taxa-luc,out=$("#calcRes");
+  if(div<=0.05){out.innerHTML=`<p><span class="chip ruim">Ajuste os percentuais</span> Taxa + lucro somam ${Math.round((taxa+luc)*100)}%. Deixe abaixo de 95% para a conta fechar.</p>`;return}
+  const preco=custo/div,arred=Math.ceil(preco-0.9)+0.9;
+  lucroPeca=arred*(1-taxa)-custo;
+  out.innerHTML=`
+   <div class="linha-res"><span>Material + embalagem</span><b>${brl(mat+emb)}</b></div>
+   <div class="linha-res"><span>Seu tempo (${min} min)</span><b>${brl(mo)}</b></div>
+   <div class="linha-res"><span>Perdas previstas</span><b>${brl(perdas)}</b></div>
+   <div class="linha-res"><span>Parte dos custos fixos</span><b>${brl(rateio)}</b></div>
+   <div class="linha-res"><span><strong>Custo total da peça</strong></span><b>${brl(custo)}</b></div>
+   <p class="eyebrow" style="margin-top:6px">Preço sugerido por peça</p>
+   <p class="grande num">${brl(arred)}</p>
+   <p class="small">Conta exata: ${brl(preco)}, arredondada para cima. Kit com ${qtd} peças: a partir de <strong>${brl(Math.ceil(preco*qtd-0.9)+0.9)}</strong>.</p>
+   <p class="small">Lucro por peça, depois da taxa e já pagando o seu tempo: <strong>${brl(lucroPeca)}</strong> <span class="chip ok">vai para a planilha de metas</span></p>`;
+  const ml=$("#m_lucro");if(ml&&!ml.dataset.manual){ml.value=lucroPeca.toFixed(2);calculaMeta()}
+}
+document.querySelectorAll("#calc input").forEach(i=>i.addEventListener("input",calcula));
+$("#calc").addEventListener("submit",e=>e.preventDefault());
+
+/* ---------- BAIRRO ---------- */
+const bairro=[
+ ["Ímã-cartão de visita","Troque o cartão de papel por um ímã com sua arte, @ e WhatsApp. Entregue a vizinhas, comércios e em cada pedido. Ele fica na geladeira o ano inteiro.","Baixo custo","Alto alcance"],
+ ["Vitrine no portão ou janela","Um varal de luzinhas com suas peças, uma plaquinha \"Encomendas de Natal\" e um QR code para o seu WhatsApp. Quem passa todo dia acaba chamando.","Baixo custo","Fácil"],
+ ["Estação \"ímã na hora\"","Num evento da escola, da igreja ou numa feirinha, monte um cenário natalino, tire a foto da família e entregue o ímã em minutos. Precisa de impressora portátil.","Médio custo","Encanta"],
+ ["Árvore de amostras no comércio","Uma mini árvore com ímãs de amostra no balcão da padaria, do salão ou do pet shop, com QR code e o nome do comércio na tag. Combine a comissão.","Baixo custo","Parceria"],
+ ["Pedido coletivo da turma","Fale com a representante de turma da escola e ofereça o ímã com a foto da turma para todas as famílias, com retirada na própria escola.","Sem custo","Volume"],
+ ["Ateliê aberto num sábado","Convide vizinhas para conhecer seu cantinho em um sábado de dezembro, com peças prontas e um café. Pertencimento vende.","Baixo custo","Relacionamento"],
+ ["Mural do condomínio e grupos","Um cartaz bonito com foto, preço, prazo e QR code no mural, e um post semanal nos grupos que permitem divulgação.","Sem custo","Fácil"],
+ ["Embalagem que faz propaganda","Etiqueta com sua @ em toda embalagem, e uma tag \"feito à mão por\". Quem recebe o presente quer saber de onde veio.","Baixo custo","Indicação"],
+ ["Sorteio com comércio parceiro","Sorteie um kit junto com a padaria ou o salão: para participar, a pessoa segue os dois perfis e marca uma amiga.","Baixo custo","Alcance"],
+ ["Pet do bairro","Ofereça ao pet shop uma sessão de fotos dos pets com gorro de Natal, com o ímã entregue depois. Divulgação garantida para os dois.","Médio custo","Parceria"],
+ ["Kit para o comércio presentear","Ofereça a salões, clínicas e lojas o ímã com logo para eles darem às próprias clientes. Um pedido, muitas unidades.","Sem custo","Volume"],
+ ["Bazar solidário","Participe de um bazar beneficente da igreja ou associação, destinando parte da venda à causa. Você conhece gente e ajuda o bairro.","Baixo custo","Reputação"]
+];
+$("#cardsBairro").innerHTML=bairro.map(b=>`<article class="cb"><h3>${b[0]}</h3><p class="small">${b[1]}</p><div class="meta"><span>${b[2]}</span><span class="g">${b[3]}</span></div></article>`).join("");
+
+/* ---------- GERADOR ---------- */
+const modelos={
+ "Reativar cliente antiga":["Reciprocidade + escassez",v=>`Oi, ${v.cliente}! Tudo bem? 💗\n\nLembrei de você porque estou fazendo ${v.produto} para ${v.ocasiao}, e achei que tinha tudo a ver com você.\n\nComo você já é cliente do ${v.atelie}, quis te avisar antes de abrir para todo mundo: tenho só ${v.vagas} vagas para entrega até ${v.data}.\n\nQuer que eu te mande as fotos e os valores?`],
+ "Oferta nova (Status/lista de quem autorizou)":["Urgência com data",v=>`🎄 ENCOMENDAS DE NATAL ABERTAS 🎄\n\n${cap(v.produto)} para ${v.ocasiao}, embalado para presente, por R$ ${v.preco}.\n\n📍 Retirada no ${v.bairro}\n📅 Personalizados até ${v.data}\n✨ Só ${v.vagas} vagas\n\nMande a palavra PRESENTE, a quantidade e a data que você precisa.`],
+ "Legenda para Instagram":["Prova social + chamada clara",v=>`Tem presente que a pessoa guarda por um ano. E tem presente que ela olha todo dia na geladeira. 🥹\n\n${cap(v.produto)} para ${v.ocasiao}, feito à mão aqui no ${v.bairro}, com embalagem de presente.\n\n💰 R$ ${v.preco}\n📅 Encomendas até ${v.data}\n\n👉 Comente ou mande PRESENTE no direct com a quantidade e a data.\n\n#artesanato #presentedenatal #feitoamao #imadegeladeira`],
+ "Story de escassez (vagas)":["Escassez real",v=>`ATUALIZAÇÃO DA AGENDA 🎅\n\nRestam ${v.vagas} vagas para ${v.produto} com entrega até ${v.data}.\n\nDepois disso, só pronta-entrega.\n\nResponda este story com PRESENTE para garantir a sua.`],
+ "Parceria com comércio":["Autoridade + benefício para o parceiro",v=>`Oi, ${v.cliente}! Sou do ${v.atelie}, aqui do ${v.bairro}. 😊\n\nFaço ${v.produto} e pensei numa ideia para as suas clientes neste Natal: deixo um expositor com amostras no seu balcão e um QR code para encomendar. Você oferece uma novidade sem estoque nenhum.\n\nPosso passar aí esta semana com uma amostra e te mostrar a proposta?`],
+ "Orçamento com validade":["Clareza + urgência",v=>`${v.cliente}, segue seu orçamento 💌\n\n• ${cap(v.produto)}\n• Valor: R$ ${v.preco} (por unidade)\n• Entrega/retirada no ${v.bairro} até ${v.data}\n\nEste orçamento vale por 48 horas, porque minha agenda de Natal está fechando. A vaga fica garantida com sinal de 50% pelo Pix e aprovação da arte.\n\nPosso reservar para você?`],
+ "Retomar orçamento sem resposta":["Ajuda, sem pressão",v=>`Oi, ${v.cliente}! Passando para saber se ficou alguma dúvida sobre ${v.produto}. 😊\n\nSe ajudar, posso montar uma opção com menos unidades ou trocar a embalagem.\n\nSó te aviso que restam ${v.vagas} vagas para entrega até ${v.data}. Quer que eu segure uma para você até amanhã?`],
+ "Confirmar pedido e sinal":["Compromisso",v=>`Pedido confirmado, ${v.cliente}! 🎉\n\nResumo:\n• ${cap(v.produto)}\n• Total: R$ ${v.preco}\n• Retirada no ${v.bairro} até ${v.data}\n\nPara entrar na fila de produção, é só enviar o sinal de 50% pelo Pix e me confirmar a grafia dos nomes. Assim que receber, te mando a arte para aprovar.`],
+ "Pedir indicação após a entrega":["Reciprocidade + prova social",v=>`${v.cliente}, que alegria saber que você gostou! 💗\n\nSe conhecer alguém procurando um presente com carinho para ${v.ocasiao}, pode encaminhar esta mensagem. Ainda tenho ${v.vagas} vagas até ${v.data}.\n\nE se puder me mandar uma fotinho do presente entregue, eu amo ver (e, se você autorizar, mostro no meu Instagram).`],
+ "Bônus: oferta de Ano Novo":["Pertencimento + exclusividade",v=>`Oi, ${v.cliente}! Passando para te desejar um lindo fim de ano. ✨\n\nFiz uma versão especial para 2027: ímã calendário com a foto preferida da família, para olhar o ano inteiro.\n\nComo você já é cliente do ${v.atelie}, separei uma condição especial até 31/12. Quer ver como fica com a sua foto?`]
+};
+function cap(s){s=String(s||"");return s.charAt(0).toUpperCase()+s.slice(1)}
+const gt=$("#g_tipo");gt.innerHTML=Object.keys(modelos).map(k=>`<option>${k}</option>`).join("");
+const gIds=["atelie","cliente","produto","ocasiao","preco","bairro","data","vagas"];
+const salvo=store.get("gerador",null);if(salvo)gIds.forEach(k=>{if(salvo[k])$("#g_"+k).value=salvo[k]});
+function gera(){
+  const v={};gIds.forEach(k=>v[k]=$("#g_"+k).value.trim()||`[${k}]`);
+  const m=modelos[gt.value];$("#g_gatilho").textContent="Gatilho: "+m[0];$("#g_saida").textContent=m[1](v);
+  const s={};gIds.forEach(k=>s[k]=$("#g_"+k).value);store.set("gerador",s);
+}
+$("#gerador").addEventListener("input",gera);$("#gerador").addEventListener("change",gera);$("#gerador").addEventListener("submit",e=>e.preventDefault());
+$("#g_copiar").addEventListener("click",async e=>{
+  const t=$("#g_saida").textContent,b=e.currentTarget;
+  try{await navigator.clipboard.writeText(t);b.textContent="Copiada ✓"}catch(err){const r=document.createRange();r.selectNodeContents($("#g_saida"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Texto selecionado, copie com Ctrl+C"}
+  setTimeout(()=>b.textContent="Copiar mensagem",2200);
+});
+gera();
+/* anexo impresso */
+(function(){const v={atelie:"[seu ateliê]",cliente:"[nome]",produto:"[produto]",ocasiao:"[ocasião]",preco:"[valor]",bairro:"[bairro]",data:"[data-limite]",vagas:"[vagas]"};
+$("#anexoMensagens").innerHTML=`<h2>Anexo: mensagens prontas</h2>`+Object.entries(modelos).map(([k,m])=>`<div class="modelo"><span class="rot">${k} · ${m[0]}</span><div style="white-space:pre-wrap">${esc(m[1](v))}</div></div>`).join("")})();
+
+/* ---------- CICLOS ---------- */
+const ciclos=[
+ {t:"Ciclo 1 · Testar",d:"Dias 1 a 3 · 30 a 45 min por dia",x:[
+   ["Dia 1","Escolha 1 peça, 1 ocasião e 1 público. Faça a amostra e calcule o preço na calculadora."],
+   ["Dia 1","Liste 20 contatos que autorizaram receber suas novidades."],
+   ["Dia 2","Grave o vídeo de 3 cenas e escreva a oferta em 3 linhas."],
+   ["Dia 2","Poste e envie a mensagem de reativação para 5 pessoas da lista."],
+   ["Dia 3","Responda todas as conversas, envie orçamentos com validade e cobre os sinais."],
+   ["Dia 3","Anote: quantas conversas, orçamentos e pedidos pagos vieram de cada canal. O que travou?"]]},
+ {t:"Ciclo 2 · Ampliar",d:"Dias 4 a 7 · repita o que funcionou",x:[
+   ["Dia 4","Ajuste UMA coisa (preço, foto, kit ou canal) e lance o kit Queridinho com um adicional."],
+   ["Dia 4","Envie a oferta para mais 10 pessoas da lista."],
+   ["Dia 5","Bairro: monte a vitrine no portão e leve amostra a 2 comércios parceiros."],
+   ["Dia 5","Publique no mural ou grupo do condomínio (onde for permitido)."],
+   ["Dia 6","Peça indicação a quem comprou e poste o story com as vagas reais."],
+   ["Dia 7","Confirme entregas, registre tudo na planilha e compare o Ciclo 1 com o Ciclo 2."],
+   ["Dia 7","Decida o que repetir no próximo ciclo e marque o novo Dia 1 na agenda."]]}
+];
+const feitos=store.get("ciclos",{});
+$("#ciclos").innerHTML=ciclos.map((c,ci)=>`<div class="ciclo"><h3>${c.t}</h3><p class="meta">${c.d}</p>${c.x.map((t,ti)=>{const id=`t${ci}_${ti}`;return `<label class="tarefa" for="${id}"><input type="checkbox" id="${id}" ${feitos[id]?"checked":""}><span><b>${t[0]}:</b> ${t[1]}</span></label>`}).join("")}</div>`).join("");
+function progCiclo(){const all=[...document.querySelectorAll("#ciclos input")],ok=all.filter(i=>i.checked).length,p=Math.round(ok/all.length*100);$("#cicloBarra").style.width=p+"%";$("#cicloPct").textContent=p+"%"}
+$("#ciclos").addEventListener("change",e=>{if(e.target.type==="checkbox"){feitos[e.target.id]=e.target.checked;store.set("ciclos",feitos);progCiclo()}});
+progCiclo();
+document.querySelectorAll("#ciclos .ciclo").forEach(c=>{c.style.color="var(--fg)"});
+
+/* ---------- LINHA DO TEMPO ---------- */
+const tempo=[
+ ["10 a 16/11","ter a seg","sug","Ação","Preparação: amostra, preço na calculadora, fotos e vídeo, lista de contatos e catálogo com chave Pix."],
+ ["17/11","terça","sug","Ação","Abertura oficial das encomendas de Natal. Anuncie as vagas reais da sua agenda."],
+ ["20/11","sexta","sug","Ação","Feriado nacional (Dia de Zumbi e da Consciência Negra): bom dia para ateliê aberto ou vitrine no portão."],
+ ["27/11","sexta","sug","Ação","Black Friday: em vez de desconto, ofereça um bônus (tag ou embalagem premium) para pedidos fechados até domingo."],
+ ["30/11","segunda","lei","Lei","Prazo legal da 1ª parcela do 13º salário. Dinheiro no bolso da cliente: reforce a oferta e as vagas."],
+ ["05/12","sábado","lim","Limite","Data-limite sugerida para pedidos de empresas e escolas (quantidade e logo)."],
+ ["12/12","sábado","lim","Limite","Data-limite sugerida para personalizados com envio. Confirme o prazo da transportadora."],
+ ["16/12","quarta","lim","Limite","Última chamada para personalizados com retirada ou entrega no bairro."],
+ ["até 20/12","domingo","lei","Lei","Prazo legal da 2ª parcela do 13º. Divulgue a vitrine de pronta-entrega."],
+ ["21 a 23/12","seg a qua","sug","Ação","Pronta-entrega e retirada expressa: o presente de quem deixou para a última hora."],
+ ["24/12","quinta","sug","Ação","Entregas até o meio-dia. Agradeça cada cliente e descanse: você merece."],
+ ["26 a 31/12","bônus","bon","Bônus","Ano Novo: kits neutros com tag \"Feliz 2027\", ímã calendário e mensagem de pós-venda."]
+];
+$("#linhaTempo").innerHTML=tempo.map(t=>`<li><span class="data">${t[0]}<small>${t[1]}</small></span><span><span class="tipo ${t[2]}">${t[3]}</span>${t[4]}</span></li>`).join("");
+
+/* ---------- ALAVANCAS ---------- */
+function alav(){
+  const c=n("#a_cli"),t=n("#a_tic"),f=n("#a_freq"),rc=+$("#r_cli").value,rt=+$("#r_tic").value,rf=+$("#r_freq").value;
+  $("#v_cli").textContent="+"+rc+"%";$("#v_tic").textContent="+"+rt+"%";$("#v_freq").textContent="+"+rf+"%";
+  const hoje=c*t*f,novo=c*(1+rc/100)*t*(1+rt/100)*f*(1+rf/100),mult=hoje?novo/hoje:0;
+  const chip=mult>=2.95?`<span class="chip ok">triplicou</span>`:mult>=1.98?`<span class="chip ok">dobrou</span>`:`<span class="chip atencao">${mult.toFixed(2).replace(".",",")}×</span>`;
+  $("#alavRes").innerHTML=`<div class="linha-res"><span>Faturamento hoje</span><b>${brl(hoje)}</b></div><div class="linha-res"><span>Com as 3 alavancas</span><b>${brl(novo)}</b></div><p class="grande num">${mult.toFixed(2).replace(".",",")}× ${chip}</p><p class="small">Na prática: ${Math.round(c*(1+rc/100))} clientes, pedido médio de ${brl(t*(1+rt/100))} e ${(f*(1+rf/100)).toFixed(2).replace(".",",")} pedido(s) por cliente.</p>`;
+}
+document.querySelectorAll("#alavancas input").forEach(i=>i.addEventListener("input",alav));alav();
+
+/* ---------- META ---------- */
+const hojeISO=new Date().toISOString().slice(0,10);$("#m_hoje").value=hojeISO;
+$("#m_lucro").addEventListener("input",e=>e.target.dataset.manual="1");
+function calculaMeta(){
+  const meta=n("#m_meta"),lp=n("#m_lucro"),capac=n("#m_cap");
+  const d0=new Date(($("#m_hoje").value||hojeISO)+"T12:00:00"),fim=new Date(d0.getFullYear()+"-12-24T12:00:00");
+  const dias=Math.max(1,Math.round((fim-d0)/864e5)),sem=Math.max(1,dias/7),out=$("#metaRes");
+  if(lp<=0){out.innerHTML=`<p><span class="chip ruim">Lucro por peça zerado</span> Ajuste o preço na calculadora: com lucro zero, nenhuma quantidade bate a meta.</p>`;return}
+  const pecas=Math.ceil(meta/lp),porSem=Math.ceil(pecas/sem);
+  const st=porSem<=capac?`<span class="chip ok">Cabe na sua produção</span>`:porSem<=capac*1.3?`<span class="chip atencao">Apertado: aumente o valor do pedido com kits</span>`:`<span class="chip ruim">Não cabe: suba o preço, venda kits ou ajuste a meta</span>`;
+  out.innerHTML=`<div class="linha-res"><span>Dias até 24/12</span><b>${dias}</b></div><div class="linha-res"><span>Peças necessárias no total</span><b>${pecas}</b></div><p class="eyebrow">Por semana</p><p class="grande num">${porSem} peças</p><p>${st}</p>`;
+}
+document.querySelectorAll("#meta input").forEach(i=>i.addEventListener("input",calculaMeta));
+
+/* ---------- REGISTRO ---------- */
+let reg=store.get("registro",null);
+if(!reg)reg=[{c:"Exemplo: Carla",p:"Kit Vovó (4 ímãs)",v:79.9,ca:"Cliente antiga",s:"Em produção",ex:1},{c:"Exemplo: Padaria Pão Quente",p:"20 ímãs com logo",v:180,ca:"Comércio parceiro",s:"Aguardando sinal",ex:1}];
+const sts=["Orçamento enviado","Aguardando sinal","Em produção","Pronto","Entregue"];
+function rReg(){
+  $("#regBody").innerHTML=reg.map((r,i)=>`<tr${r.ex?' style="color:var(--fg-soft);font-style:italic"':""}><td>${esc(r.c)}</td><td>${esc(r.p)}</td><td class="num">${brl(r.v)}</td><td>${esc(r.ca)}</td><td><select data-i="${i}" aria-label="Status">${sts.map(s=>`<option${s===r.s?" selected":""}>${s}</option>`).join("")}</select></td><td class="no-print"><button type="button" class="btn sec" style="padding:6px 10px" data-del="${i}" aria-label="Remover">×</button></td></tr>`).join("")||`<tr><td colspan="6" class="muted">Nenhum pedido ainda. Adicione o primeiro acima.</td></tr>`;
+  const conf=reg.filter(r=>["Em produção","Pronto","Entregue"].includes(r.s)),tot=conf.reduce((a,r)=>a+r.v,0),pend=reg.filter(r=>["Orçamento enviado","Aguardando sinal"].includes(r.s)).reduce((a,r)=>a+r.v,0);
+  const canais={};conf.forEach(r=>canais[r.ca]=(canais[r.ca]||0)+r.v);const top=Object.entries(canais).sort((a,b)=>b[1]-a[1])[0];
+  $("#regRes").innerHTML=`<div class="linha-res"><span>Vendido (sinal pago em diante)</span><b>${brl(tot)}</b></div><div class="linha-res"><span>Em negociação</span><b>${brl(pend)}</b></div><div class="linha-res"><span>Canal que mais vendeu</span><b>${top?esc(top[0]):"—"}</b></div>`;
+  store.set("registro",reg);
+}
+$("#regForm").addEventListener("submit",e=>{e.preventDefault();reg=reg.filter(r=>!r.ex);reg.push({c:$("#r_cliente").value,p:$("#r_prod").value,v:n("#r_valor"),ca:$("#r_canal").value,s:$("#r_status").value});e.target.reset();rReg()});
+$("#regBody").addEventListener("change",e=>{if(e.target.dataset.i){reg[+e.target.dataset.i].s=e.target.value;rReg()}});
+$("#regBody").addEventListener("click",e=>{const b=e.target.closest("[data-del]");if(b){reg.splice(+b.dataset.del,1);rReg()}});
+rReg();
+
+/* ---------- MATERIAIS (troque os links pelos seus de afiliada) ---------- */
+/* links de afiliada Shopee */
+const mats=[
+ ["Máquina de fazer ímã e botton","Prensa manual, a estrela da lista","https://s.shopee.com.br/9KjXGsalxn",1],
+ ["Kit de bases imantadas","Do mesmo tamanho da máquina","https://s.shopee.com.br/3VlkKJtLwY"],
+ ["Cortador circular de papel","Corte perfeito e rápido","https://s.shopee.com.br/gRYxEE68a"],
+ ["Papel fotográfico glossy A4","Cores vivas nas fotos","https://s.shopee.com.br/LoiZsAG2V"],
+ ["Manta magnética adesiva","Para ímãs polaroid, MDF e acrílico","https://s.shopee.com.br/5q9f82o7Gn"],
+ ["Ímã de acrílico para foto","Acabamento premium","https://s.shopee.com.br/1gK6ICfEzY"],
+ ["Impressora fotográfica portátil","Para a estação \"ímã na hora\"","https://s.shopee.com.br/5VWorVbmaM"],
+ ["Saquinhos transparentes com aba","Embalagem rápida e bonita","https://s.shopee.com.br/8fTqdV3gYN"],
+ ["Caixinhas kraft para kits","Transformam peças em presente","https://s.shopee.com.br/2gCdUbEq6F"],
+ ["Fitas de cetim vermelha, verde e dourada","Toque de Natal","https://s.shopee.com.br/5q9fGV9hZX"],
+ ["Tags kraft com barbante","Para nome e mensagem","https://s.shopee.com.br/6AmVfDajpi"],
+ ["Etiquetas adesivas personalizadas","Sua @ em toda embalagem","https://s.shopee.com.br/8AXa2yDuAs"],
+ ["Cordão de luzinhas","Vitrine no portão e fotos","https://s.shopee.com.br/7VHtFosUeA"],
+ ["Fundo fotográfico natalino","Fotos de produto que vendem","https://s.shopee.com.br/7fbJSAUAQl"],
+ ["Fita dupla face e cola forte","Montagem de cartelas e kits","https://s.shopee.com.br/3g5Agt4G8k"],
+ ["Plastificadora e polaseal","Proteção extra para polaroids","https://s.shopee.com.br/5AtyTkHdu8"]
+];
+$("#listaMateriais").innerHTML=mats.map(m=>`<a class="mat${m[3]?" destaque":""}" href="${m[2]}" target="_blank" rel="noopener sponsored"><span class="ic" aria-hidden="true">🛒</span><span><b>${m[0]}</b><span>${m[1]}</span></span></a>`).join("");
+
+calcula();calculaMeta();
+})();
+</script>
+
+</body></html>
